@@ -1,0 +1,70 @@
+Dans le cadre du cours de PHP à la Faculté des Sciences Informatiques de l’URHC, les étudiants de Niveau III – Session I doivent concevoir un site web dynamique pour un service de location de voitures.
+
+Objectif du Projet
+Créer un site web dynamique sans utiliser de template ou d’outil externe pour le design.
+Le site doit permettre à des visiteurs de faire une réservation en ligne et contenir toutes les fonctionnalités essentielles pour un service de location de véhicules.
+
+Partie Front-end (Visible par l’utilisateur)
+1. Page d’accueil
+Présenter la société de location (The Genuis).
+
+Afficher les catégories de véhicules disponibles (SUV, berlines, etc.).
+
+Bouton d’appel à l’action : "Réservez maintenant".
+
+2. Page de réservation
+Calendrier dynamique pour choisir la date de début et de fin de location.
+
+Affichage des véhicules disponibles selon les dates sélectionnées.
+
+Filtres pour trier les véhicules (type, modèle, prix…).
+
+Détails de chaque véhicule :
+
+Photo
+
+Description
+
+Prix par jour
+
+Options disponibles (GPS, siège bébé, etc.).
+
+3. Panier de réservation
+Récapitulatif des véhicules sélectionnés.
+
+Sélection d’options supplémentaires (assurance, siège enfant…).
+
+Calcul du prix total, y compris taxes et frais supplémentaires.
+
+4. Formulaire de réservation
+Collecte des informations personnelles :
+
+Nom
+
+Prénom
+
+Email
+
+Téléphone
+
+Informations de paiement (carte bancaire, PayPal…).
+
+Confirmation de la réservation et envoi automatique d’un message de confirmation avec un récapitulatif.
+
+5. Pages "À propos" et "Contact"
+Informations sur la société : historique, services offerts, avantages.
+
+Formulaire de contact pour permettre aux visiteurs de poser des questions.
+
+Coordonnées pratiques : adresse, téléphone, email.
+
+Partie Back-end (Interface d’administration)
+Gestion des réservations
+Affichage des réservations actuelles et passées.
+
+Fonctionnalité de modification ou suppression d’une réservation.
+
+Gestion des utilisateurs
+Affichage de la liste des clients inscrits avec leurs informations personnelles.
+
+
