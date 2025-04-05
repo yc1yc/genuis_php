@@ -118,10 +118,24 @@ Le site est entièrement responsive avec une approche mobile-first :
 - Ajouter le panier
 - Intégrer le système de paiement
 - Ajouter les emails de confirmation
+
 ### ***Authentification*** :
 - Système de connexion/inscription
 - Espace client
 - Interface d'administration
+
+### ***Recomendations pour compléter le système*** :
+Créer l'interface d'administration avec :
+- Tableau de bord
+- Gestion des utilisateurs
+- Gestion des réservations
+- Gestion des véhicules
+- Statistiques
+
+Ajouter des fonctionnalités à l'espace client :
+- Export des factures
+- Système de notifications
+- Historique des paiements
 ### ***Gestion des véhicules*** :
 - Upload d'images
 - Galerie de photos
@@ -141,6 +155,9 @@ Le site est entièrement responsive avec une approche mobile-first :
 - Protection CSRF
 - Sanitization des données
 - Gestion des sessions
+- Limiter les tentatives de connexion
+- Journal des connexions
+- Authentification à deux facteurs
 ### ***Performance*** :
 - Optimisation des images
 - Mise en cache

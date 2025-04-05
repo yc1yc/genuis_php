@@ -1,0 +1,15 @@
+{
+    "name": "genuis/car-rental",
+    "description": "Système de location de voitures The Genuis",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "stripe/stripe-php": "^10.0",
+        "phpmailer/phpmailer": "^6.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Genuis\\": "src/"
+        }
+    }
+}

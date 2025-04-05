@@ -11,6 +11,7 @@
         <section class="categories">
             <h2>Nos catégories de véhicules</h2>
             <?php
+            $pdo = getPDO();
             $stmt = $pdo->query("SELECT * FROM vehicle_categories");
             $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>

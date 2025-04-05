@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /genuis_php/
+
+# Si le fichier ou dossier n'existe pas physiquement
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rediriger toutes les requêtes vers index.php
+RewriteRule ^(.*)$ index.php?page=$1 [QSA,L]

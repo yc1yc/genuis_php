@@ -1,3 +1,7 @@
+        <?php
+if (!defined('FOOTER_INCLUDED')) {
+    define('FOOTER_INCLUDED', true);
+?>
         <footer class="main-footer">
     <div class="container">
         <div class="footer-grid">
@@ -82,3 +86,6 @@
 <script src="assets/js/main.js"></script>
 </body>
 </html>
+<?php
+}
+?>
