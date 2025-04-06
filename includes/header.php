@@ -16,11 +16,21 @@ $currentUser = getCurrentUser();
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/genuis_php/assets/css/style.css">
+    <link rel="stylesheet" href="/genuis_php/assets/css/slider.css">
     <?php if ($page === 'admin'): ?>
     <link rel="stylesheet" href="/genuis_php/assets/css/admin.css">
     <?php endif; ?>
+    
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+    
+    <!-- Custom JS -->
+    <script src="/genuis_php/assets/js/slider.js" defer></script>
 </head>
 <body>
     <nav class="navbar">

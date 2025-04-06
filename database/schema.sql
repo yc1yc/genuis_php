@@ -201,4 +201,4 @@ INSERT INTO options (name, price_per_day, description, icon) VALUES
 
 -- Create admin user
 INSERT INTO users (first_name, last_name, email, password, role) VALUES
-('Admin', 'System', 'admin@thegenuis.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
+('Admin', 'System', 'admin@thegenuis.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admi

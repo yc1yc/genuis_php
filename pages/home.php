@@ -8,23 +8,38 @@
     </div>
 
     <div class="main-content">
-        <section class="categories">
-            <h2>Nos catégories de véhicules</h2>
-            <?php
-            $pdo = getPDO();
-            $stmt = $pdo->query("SELECT * FROM vehicle_categories");
-            $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            ?>
-            
-            <div class="vehicle-grid">
-                <?php foreach ($categories as $category): ?>
-                    <div class="vehicle-card">
-                        <h3><?php echo htmlspecialchars($category['name']); ?></h3>
-                        <p><?php echo htmlspecialchars($category['description']); ?></p>
-                        <a href="index.php?page=reservation&category=<?php echo $category['id']; ?>" 
-                           class="btn btn-primary">Voir les véhicules</a>
-                    </div>
-                <?php endforeach; ?>
+        <section class="partnerships">
+            <div class="section-header">
+                <h2>Découvrez nos plus grands partenariats</h2>
+                <p>une collaboration avec des marques de prestige pour vous offrir l'excellence.</p>
+            </div>
+
+            <!-- Swiper -->
+            <div class="swiper-container categories-slider">
+                <div class="swiper-wrapper">
+                    <?php
+                    $pdo = getPDO();
+                    $stmt = $pdo->query("SELECT * FROM vehicle_categories");
+                    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    
+                    foreach ($categories as $category): ?>
+                        <div class="swiper-slide">
+                            <div class="category-card">
+                                <div class="category-icon">
+                                    <img src="<?php echo htmlspecialchars($category['image_url'] ?? 'assets/images/default-category.png'); ?>" 
+                                         alt="<?php echo htmlspecialchars($category['name']); ?>">
+                                </div>
+                                <h3><?php echo htmlspecialchars($category['name']); ?></h3>
+                                <p><?php echo htmlspecialchars($category['description']); ?></p>
+                                <a href="index.php?page=reservation&category=<?php echo $category['id']; ?>" 
+                                   class="btn btn-outline">Découvrir</a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </section>
 
