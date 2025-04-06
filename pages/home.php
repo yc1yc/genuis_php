@@ -3,7 +3,7 @@
         <div class="hero-content">
             <h1>Bienvenue chez The Genuis</h1>
             <p>Location de voitures de qualité à des prix compétitifs</p>
-            <a href="index.php?page=reservation" class="btn btn-primary">Réservez maintenant</a>
+            <a href="?page=vehicles" class="btn btn-primary">Réservez maintenant</a>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
                     <div class="vehicle-card">
                         <h3><?php echo htmlspecialchars($category['name']); ?></h3>
                         <p><?php echo htmlspecialchars($category['description']); ?></p>
-                        <a href="index.php?page=reservation&category=<?php echo $category['id']; ?>" 
+                        <a href="?page=vehicles&category=<?php echo $category['id']; ?>" 
                            class="btn btn-primary">Voir les véhicules</a>
                     </div>
                 <?php endforeach; ?>

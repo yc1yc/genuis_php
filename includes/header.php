@@ -18,6 +18,7 @@ $currentUser = getCurrentUser();
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/genuis_php/assets/css/style.css">
+    <link rel="stylesheet" href="/genuis_php/assets/css/modal.css">
     <?php if ($page === 'admin'): ?>
     <link rel="stylesheet" href="/genuis_php/assets/css/admin.css">
     <?php endif; ?>
@@ -126,6 +127,7 @@ $currentUser = getCurrentUser();
         </div>
     </div>
 
+    <script src="/genuis_php/assets/js/modal.js" defer></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Menu mobile

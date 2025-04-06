@@ -8,7 +8,7 @@ if (isLoggedIn()) {
     if ($role === 'admin') {
         doRedirect('?page=admin');
     } else {
-        doRedirect('?page=account');
+        doRedirect('?page=reservations');
     }
 }
 
@@ -35,6 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_role'] = $user['role'];
                 $_SESSION['user_name'] = $user['first_name'] . ' ' . $user['last_name'];
+
+                // Redirection selon le rôle
+                if ($user['role'] === 'admin') {
+                    doRedirect('?page=admin');
+                } else {
+                    doRedirect('?page=reservations');
+                }
 
                 // Gérer "Se souvenir de moi"
                 if ($remember) {

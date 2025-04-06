@@ -42,7 +42,25 @@ $adminPage = $_GET['admin_page'] ?? 'index';
     </div>
 
     <div class="admin-content">
-        <?php if ($adminPage === 'index'): ?>
+        <?php
+        // Gérer les différentes pages d'administration
+        switch ($adminPage) {
+            case 'vehicles':
+                $action = $_GET['action'] ?? 'list';
+                switch ($action) {
+                    case 'add':
+                    case 'edit':
+                        require_once __DIR__ . '/vehicle_form.php';
+                        break;
+                    default:
+                        require_once __DIR__ . '/vehicles.php';
+                        break;
+                }
+                break;
+
+            case 'index':
+            default:
+        ?>
             <div class="admin-header">
                 <h1>Administration</h1>
             </div>
@@ -84,6 +102,9 @@ $adminPage = $_GET['admin_page'] ?? 'index';
                     <p>Statistiques détaillées</p>
                 </a>
             </div>
-        <?php endif; ?>
+        <?php
+            break;
+        }
+        ?>
     </div>
 </div>

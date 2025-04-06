@@ -22,6 +22,9 @@ switch ($page) {
     case 'vehicles':
         include 'pages/vehicles.php';
         break;
+    case 'reservations':
+        include 'pages/reservations.php';
+        break;
     case 'reservation':
         include 'pages/reservation.php';
         break;
