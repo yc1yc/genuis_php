@@ -91,11 +91,6 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 
 -- --------------------------------------------------------
 
-<<<<<<< HEAD
--- Create admin user
-INSERT INTO users (first_name, last_name, email, password, role) VALUES
-('Admin', 'System', 'admin@thegenuis.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admi
-=======
 --
 -- Table structure for table `payments`
 --
@@ -204,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   KEY `user_id` (`user_id`),
   KEY `vehicle_id` (`vehicle_id`),
   KEY `reservation_id` (`reservation_id`)
-) ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -299,14 +294,20 @@ CREATE TABLE IF NOT EXISTS `vehicles` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `registration_number` (`registration_number`),
   KEY `category_id` (`category_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vehicles`
 --
 
 INSERT INTO `vehicles` (`id`, `category_id`, `brand`, `model`, `year`, `registration_number`, `price_per_day`, `description`, `specifications`, `mileage`, `fuel_type`, `transmission`, `seats`, `doors`, `air_conditioning`, `image_url`, `gallery_images`, `is_available`, `created_at`, `updated_at`) VALUES
-(1, 3, 'BMW', 'MD', 2025, '1234567890', 1000.00, 'z a az', 'a  za', 1000, 'essence', 'manuelle', 4, 4, 1, NULL, NULL, 1, '2025-04-05 21:47:03', '2025-04-05 21:47:03');
+(1, 3, 'BMW', 'M4 Competition', 2025, 'BM4525XY', 1000.00, 'Voiture sport de luxe avec des performances exceptionnelles. Parfaite pour les amateurs de sensations fortes.', 'Moteur 6 cylindres en ligne, 510 ch, 0-100 km/h en 3.9s', 1000, 'essence', 'automatique', 4, 2, 1, '/genuis_php/assets/images/vehicles/bmw-m4.jpg', '["/genuis_php/assets/images/gallery/bmw-m4-1.jpg","/genuis_php/assets/images/gallery/bmw-m4-2.jpg","/genuis_php/assets/images/gallery/bmw-m4-3.jpg"]', 1, '2025-04-05 21:47:03', '2025-04-05 21:47:03'),
+(2, 1, 'Range Rover', 'Sport', 2024, 'RR2024SP', 800.00, 'SUV luxueux combinant confort, espace et capacités tout-terrain.', 'Moteur V8, 525 ch, Suspension adaptative, Système tout-terrain intelligent', 2500, 'diesel', 'automatique', 5, 5, 1, '/genuis_php/assets/images/vehicles/range-rover-sport.jpg', '["/genuis_php/assets/images/gallery/range-sport-1.jpg","/genuis_php/assets/images/gallery/range-sport-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(3, 2, 'Mercedes', 'Classe S', 2024, 'MS2024LX', 750.00, 'Berline haut de gamme incarnant le luxe et le confort absolu.', 'Moteur V6, 435 ch, Conduite semi-autonome, Intérieur cuir premium', 3000, 'hybride', 'automatique', 5, 4, 1, '/genuis_php/assets/images/vehicles/mercedes-s.jpg', '["/genuis_php/assets/images/gallery/mercedes-s-1.jpg","/genuis_php/assets/images/gallery/mercedes-s-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(4, 4, 'Peugeot', '208', 2024, 'PG2024CT', 200.00, 'Citadine moderne, économique et agile pour la ville.', 'Moteur 1.2L, 100 ch, Système d''aide au stationnement, Écran tactile 10"', 5000, 'essence', 'manuelle', 5, 5, 1, '/genuis_php/assets/images/vehicles/peugeot-208.jpg', '["/genuis_php/assets/images/gallery/peugeot-208-1.jpg","/genuis_php/assets/images/gallery/peugeot-208-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(5, 5, 'Renault', 'Trafic', 2024, 'RT2024UT', 300.00, 'Utilitaire spacieux et pratique, idéal pour les déménagements.', 'Volume de chargement 8m³, Charge utile 1200kg, Radar de recul', 8000, 'diesel', 'manuelle', 3, 4, 1, '/genuis_php/assets/images/vehicles/renault-trafic.jpg', '["/genuis_php/assets/images/gallery/renault-trafic-1.jpg","/genuis_php/assets/images/gallery/renault-trafic-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(6, 3, 'Porsche', '911 GT3', 2024, 'PO2024GT', 1200.00, 'Voiture de sport légendaire offrant des performances exceptionnelles.', 'Moteur 6 cylindres à plat, 510 ch, 0-100 km/h en 3.4s', 1500, 'essence', 'automatique', 2, 2, 1, '/genuis_php/assets/images/vehicles/porsche-911.jpg', '["/genuis_php/assets/images/gallery/porsche-911-1.jpg","/genuis_php/assets/images/gallery/porsche-911-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(7, 1, 'Audi', 'Q7', 2024, 'AQ2024Q7', 600.00, 'SUV familial premium avec technologie de pointe.', 'Moteur V6 TDI, 286 ch, 7 places, Système audio Bang & Olufsen', 4000, 'diesel', 'automatique', 7, 5, 1, '/genuis_php/assets/images/vehicles/audi-q7.jpg', '["/genuis_php/assets/images/gallery/audi-q7-1.jpg","/genuis_php/assets/images/gallery/audi-q7-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00');
 
 -- --------------------------------------------------------
 
@@ -330,11 +331,11 @@ CREATE TABLE IF NOT EXISTS `vehicle_categories` (
 --
 
 INSERT INTO `vehicle_categories` (`id`, `name`, `description`, `image_url`, `created_at`, `updated_at`) VALUES
-(1, 'SUV', 'Véhicules spacieux et polyvalents, parfaits pour les familles et les longs trajets', NULL, '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
-(2, 'Berline', 'Voitures élégantes et confortables, idéales pour les déplacements professionnels', NULL, '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
-(3, 'Sport', 'Véhicules performants et design, pour une expérience de conduite unique', NULL, '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
-(4, 'Citadine', 'Petites voitures agiles, parfaites pour la ville', NULL, '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
-(5, 'Utilitaire', 'Véhicules pratiques pour vos déménagements et transports', NULL, '2025-04-05 21:37:10', '2025-04-05 21:37:10');
+(1, 'SUV', 'Véhicules spacieux et polyvalents, parfaits pour les familles et les longs trajets', './assets/images/categories/suv.jpg', '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
+(2, 'Berline', 'Voitures élégantes et confortables, idéales pour les déplacements professionnels', './assets/images/categories/berline.jpg', '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
+(3, 'Sport', 'Véhicules performants et design, pour une expérience de conduite unique', './assets/images/categories/sport.jpg', '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
+(4, 'Citadine', 'Petites voitures agiles, parfaites pour la ville', './assets/images/categories/citadine.jpg', '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
+(5, 'Utilitaire', 'Véhicules pratiques pour vos déménagements et transports', './assets/images/categories/utilitaire.jpg', '2025-04-05 21:37:10', '2025-04-05 21:37:10');
 
 -- --------------------------------------------------------
 
@@ -351,9 +352,9 @@ CREATE TABLE IF NOT EXISTS `vehicle_images` (
   PRIMARY KEY (`id`),
   KEY `vehicle_id` (`vehicle_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
->>>>>>> bda064ee217c2e815ff40465fee7349c88c9aae0
