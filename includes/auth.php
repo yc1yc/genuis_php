@@ -202,9 +202,9 @@ if (!defined('AUTH_INCLUDED')) {
     function verifyCsrfToken() {
         if (!isset($_POST['csrf_token']) || !isset($_SESSION['csrf_token']) ||
             $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-            header('HTTP/1.0 403 Forbidden');
-            exit('Invalid CSRF token');
+            return false;
         }
+        return true;
     }
 
     function formatDate($date) {

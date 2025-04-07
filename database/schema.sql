@@ -1,204 +1,359 @@
--- Create the database
-CREATE DATABASE IF NOT EXISTS genuis_rental;
-USE genuis_rental;
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Apr 06, 2025 at 12:45 AM
+-- Server version: 9.1.0
+-- PHP Version: 8.3.14
 
--- User roles table
-CREATE TABLE user_roles (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL UNIQUE,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
--- Insert default roles
-INSERT INTO user_roles (name, description) VALUES
-('admin', 'Administrateur avec tous les droits'),
-('client', 'Client standard');
 
--- Vehicle categories table
-CREATE TABLE vehicle_categories (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    description TEXT,
-    image_url VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
--- Vehicles table
-CREATE TABLE vehicles (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    category_id INT,
-    brand VARCHAR(50) NOT NULL,
-    model VARCHAR(50) NOT NULL,
-    year INT NOT NULL,
-    price_per_day DECIMAL(10,2) NOT NULL,
-    description TEXT,
-    specifications TEXT,
-    mileage INT,
-    fuel_type ENUM('essence', 'diesel', 'électrique', 'hybride'),
-    transmission ENUM('manuelle', 'automatique'),
-    seats INT,
-    doors INT,
-    air_conditioning BOOLEAN DEFAULT true,
-    image_url VARCHAR(255),
-    gallery_images TEXT,
-    is_available BOOLEAN DEFAULT true,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES vehicle_categories(id)
-);
+--
+-- Database: `genuis_rental`
+--
 
--- Options table
-CREATE TABLE options (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    price_per_day DECIMAL(10,2) NOT NULL,
-    description TEXT,
-    icon VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+-- --------------------------------------------------------
 
--- Users table
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    phone VARCHAR(20),
-    password VARCHAR(255),
-    address TEXT,
-    city VARCHAR(100),
-    postal_code VARCHAR(10),
-    country VARCHAR(50),
-    driving_license VARCHAR(50),
-    role ENUM('client', 'admin') DEFAULT 'client',
-    avatar VARCHAR(255),
-    is_active BOOLEAN DEFAULT true,
-    last_login TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+--
+-- Table structure for table `contact_messages`
+--
 
--- Remember tokens table (pour "Se souvenir de moi")
-CREATE TABLE remember_tokens (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    token VARCHAR(64) NOT NULL UNIQUE,
-    expires_at DATETIME NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
+DROP TABLE IF EXISTS `contact_messages`;
+CREATE TABLE IF NOT EXISTS `contact_messages` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `subject` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message` text COLLATE utf8mb4_general_ci NOT NULL,
+  `status` enum('new','read','replied') COLLATE utf8mb4_general_ci DEFAULT 'new',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Password reset tokens table
-CREATE TABLE password_resets (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    token VARCHAR(64) NOT NULL UNIQUE,
-    expires_at DATETIME NOT NULL,
-    used BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
+-- --------------------------------------------------------
 
--- Reservations table
-CREATE TABLE reservations (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    vehicle_id INT,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    pickup_time TIME NOT NULL,
-    return_time TIME NOT NULL,
-    total_days INT NOT NULL,
-    base_price DECIMAL(10,2) NOT NULL,
-    options_price DECIMAL(10,2) DEFAULT 0,
-    insurance_price DECIMAL(10,2) DEFAULT 0,
-    total_price DECIMAL(10,2) NOT NULL,
-    status ENUM('pending', 'confirmed', 'in_progress', 'completed', 'cancelled') DEFAULT 'pending',
-    payment_status ENUM('pending', 'paid', 'refunded') DEFAULT 'pending',
-    notes TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
-);
+--
+-- Table structure for table `options`
+--
 
--- Reservation options table
-CREATE TABLE reservation_options (
-    reservation_id INT,
-    option_id INT,
-    price DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (reservation_id) REFERENCES reservations(id) ON DELETE CASCADE,
-    FOREIGN KEY (option_id) REFERENCES options(id),
-    PRIMARY KEY (reservation_id, option_id)
-);
+DROP TABLE IF EXISTS `options`;
+CREATE TABLE IF NOT EXISTS `options` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `price_per_day` decimal(10,2) NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `icon` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Payments table
-CREATE TABLE payments (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    reservation_id INT,
-    amount DECIMAL(10,2) NOT NULL,
-    payment_method ENUM('card', 'paypal', 'bank_transfer'),
-    transaction_id VARCHAR(100),
-    status ENUM('pending', 'completed', 'failed', 'refunded'),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (reservation_id) REFERENCES reservations(id)
-);
+--
+-- Dumping data for table `options`
+--
 
--- Reviews table
-CREATE TABLE reviews (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    vehicle_id INT,
-    reservation_id INT,
-    rating INT CHECK (rating BETWEEN 1 AND 5),
-    comment TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id),
-    FOREIGN KEY (reservation_id) REFERENCES reservations(id)
-);
+INSERT INTO `options` (`id`, `name`, `price_per_day`, `description`, `icon`, `created_at`, `updated_at`) VALUES
+(1, 'GPS', 5.00, 'Système de navigation GPS intégré', 'fa-location-dot', '2025-04-05 21:37:11', '2025-04-05 21:37:11'),
+(2, 'Siège bébé', 10.00, 'Siège auto homologué pour enfant', 'fa-baby', '2025-04-05 21:37:11', '2025-04-05 21:37:11'),
+(3, 'Assurance complète', 15.00, 'Couverture tous risques avec assistance 24/7', 'fa-shield', '2025-04-05 21:37:11', '2025-04-05 21:37:11'),
+(4, 'Chaînes neige', 8.00, 'Kit de chaînes pour conditions hivernales', 'fa-snowflake', '2025-04-05 21:37:11', '2025-04-05 21:37:11'),
+(5, 'Wifi portable', 7.00, 'Connexion internet 4G dans votre véhicule', 'fa-wifi', '2025-04-05 21:37:11', '2025-04-05 21:37:11'),
+(6, 'Second conducteur', 12.00, 'Ajout d\'un conducteur supplémentaire', 'fa-user-plus', '2025-04-05 21:37:11', '2025-04-05 21:37:11');
 
--- Vehicle images table
-CREATE TABLE vehicle_images (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    vehicle_id INT NOT NULL,
-    image_path VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE
-);
+-- --------------------------------------------------------
 
--- Contact messages table
-CREATE TABLE contact_messages (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    phone VARCHAR(20),
-    subject VARCHAR(200),
-    message TEXT NOT NULL,
-    status ENUM('new', 'read', 'replied') DEFAULT 'new',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+--
+-- Table structure for table `password_resets`
+--
 
--- Insert sample data
-INSERT INTO vehicle_categories (name, description) VALUES
-('SUV', 'Véhicules spacieux et polyvalents, parfaits pour les familles et les longs trajets'),
-('Berline', 'Voitures élégantes et confortables, idéales pour les déplacements professionnels'),
-('Sport', 'Véhicules performants et design, pour une expérience de conduite unique'),
-('Citadine', 'Petites voitures agiles, parfaites pour la ville'),
-('Utilitaire', 'Véhicules pratiques pour vos déménagements et transports');
+DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE IF NOT EXISTS `password_resets` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `used` tinyint(1) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `token` (`token`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO options (name, price_per_day, description, icon) VALUES
-('GPS', 5.00, 'Système de navigation GPS intégré', 'fa-location-dot'),
-('Siège bébé', 10.00, 'Siège auto homologué pour enfant', 'fa-baby'),
-('Assurance complète', 15.00, 'Couverture tous risques avec assistance 24/7', 'fa-shield'),
-('Chaînes neige', 8.00, 'Kit de chaînes pour conditions hivernales', 'fa-snowflake'),
-('Wifi portable', 7.00, 'Connexion internet 4G dans votre véhicule', 'fa-wifi'),
-('Second conducteur', 12.00, 'Ajout d\'un conducteur supplémentaire', 'fa-user-plus');
+-- --------------------------------------------------------
 
+<<<<<<< HEAD
 -- Create admin user
 INSERT INTO users (first_name, last_name, email, password, role) VALUES
 ('Admin', 'System', 'admin@thegenuis.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admi
+=======
+--
+-- Table structure for table `payments`
+--
+
+DROP TABLE IF EXISTS `payments`;
+CREATE TABLE IF NOT EXISTS `payments` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `reservation_id` int DEFAULT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `payment_method` enum('card','paypal','bank_transfer') COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `transaction_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` enum('pending','completed','failed','refunded') COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `reservation_id` (`reservation_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `remember_tokens`
+--
+
+DROP TABLE IF EXISTS `remember_tokens`;
+CREATE TABLE IF NOT EXISTS `remember_tokens` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `token` (`token`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservations`
+--
+
+DROP TABLE IF EXISTS `reservations`;
+CREATE TABLE IF NOT EXISTS `reservations` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `vehicle_id` int DEFAULT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `pickup_time` time NOT NULL,
+  `return_time` time NOT NULL,
+  `total_days` int NOT NULL,
+  `base_price` decimal(10,2) NOT NULL,
+  `options_price` decimal(10,2) DEFAULT '0.00',
+  `insurance_price` decimal(10,2) DEFAULT '0.00',
+  `total_price` decimal(10,2) NOT NULL,
+  `status` enum('pending','confirmed','in_progress','completed','cancelled') COLLATE utf8mb4_general_ci DEFAULT 'pending',
+  `payment_status` enum('pending','paid','refunded') COLLATE utf8mb4_general_ci DEFAULT 'pending',
+  `notes` text COLLATE utf8mb4_general_ci,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `vehicle_id` (`vehicle_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `user_id`, `vehicle_id`, `start_date`, `end_date`, `pickup_time`, `return_time`, `total_days`, `base_price`, `options_price`, `insurance_price`, `total_price`, `status`, `payment_status`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, '2025-04-07', '2025-04-12', '10:00:00', '18:00:00', 6, 1000.00, 0.00, 0.00, 6000.00, 'pending', 'pending', NULL, '2025-04-06 00:33:49', '2025-04-06 00:33:49'),
+(2, 2, 1, '2025-04-13', '2025-04-19', '10:00:00', '18:00:00', 7, 1000.00, 0.00, 0.00, 7000.00, 'pending', 'pending', NULL, '2025-04-06 00:37:50', '2025-04-06 00:37:50'),
+(3, 2, 1, '2025-04-20', '2025-05-10', '10:00:00', '18:00:00', 21, 1000.00, 0.00, 0.00, 21000.00, 'pending', 'pending', NULL, '2025-04-06 00:43:10', '2025-04-06 00:43:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservation_options`
+--
+
+DROP TABLE IF EXISTS `reservation_options`;
+CREATE TABLE IF NOT EXISTS `reservation_options` (
+  `reservation_id` int NOT NULL,
+  `option_id` int NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`reservation_id`,`option_id`),
+  KEY `option_id` (`option_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE IF NOT EXISTS `reviews` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `vehicle_id` int DEFAULT NULL,
+  `reservation_id` int DEFAULT NULL,
+  `rating` int DEFAULT NULL,
+  `comment` text COLLATE utf8mb4_general_ci,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `vehicle_id` (`vehicle_id`),
+  KEY `reservation_id` (`reservation_id`)
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `last_name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_general_ci,
+  `city` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `postal_code` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `country` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `driving_license` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `role` enum('client','admin') COLLATE utf8mb4_general_ci DEFAULT 'client',
+  `avatar` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT '1',
+  `last_login` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `phone`, `password`, `address`, `city`, `postal_code`, `country`, `driving_license`, `role`, `avatar`, `is_active`, `last_login`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'System', 'admin@thegenuis.com', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, NULL, NULL, NULL, NULL, 'admin', NULL, 1, NULL, '2025-04-05 21:37:11', '2025-04-05 21:37:11'),
+(2, 'Youvelie', 'Chery', 'cheryyouvelie9@gmail.com', '1234567890', '$2y$10$ROEOxXcEqKts3CruP2Fztud94Xi4cS13e5.tOLG4SbROizsqkrjA2', '128 Nw 6th Ave Hallandale  Beach', 'Florida', '33009', 'Haiti', NULL, 'client', NULL, 1, NULL, '2025-04-05 21:50:31', '2025-04-05 21:50:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+DROP TABLE IF EXISTS `user_roles`;
+CREATE TABLE IF NOT EXISTS `user_roles` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+INSERT INTO `user_roles` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'Administrateur avec tous les droits', '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
+(2, 'client', 'Client standard', '2025-04-05 21:37:10', '2025-04-05 21:37:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicles`
+--
+
+DROP TABLE IF EXISTS `vehicles`;
+CREATE TABLE IF NOT EXISTS `vehicles` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `category_id` int DEFAULT NULL,
+  `brand` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `model` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `year` int NOT NULL,
+  `registration_number` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `price_per_day` decimal(10,2) NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `specifications` text COLLATE utf8mb4_general_ci,
+  `mileage` int DEFAULT NULL,
+  `fuel_type` enum('essence','diesel','électrique','hybride') COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `transmission` enum('manuelle','automatique') COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `seats` int DEFAULT NULL,
+  `doors` int DEFAULT NULL,
+  `air_conditioning` tinyint(1) DEFAULT '1',
+  `image_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gallery_images` text COLLATE utf8mb4_general_ci,
+  `is_available` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `registration_number` (`registration_number`),
+  KEY `category_id` (`category_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vehicles`
+--
+
+INSERT INTO `vehicles` (`id`, `category_id`, `brand`, `model`, `year`, `registration_number`, `price_per_day`, `description`, `specifications`, `mileage`, `fuel_type`, `transmission`, `seats`, `doors`, `air_conditioning`, `image_url`, `gallery_images`, `is_available`, `created_at`, `updated_at`) VALUES
+(1, 3, 'BMW', 'MD', 2025, '1234567890', 1000.00, 'z a az', 'a  za', 1000, 'essence', 'manuelle', 4, 4, 1, NULL, NULL, 1, '2025-04-05 21:47:03', '2025-04-05 21:47:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_categories`
+--
+
+DROP TABLE IF EXISTS `vehicle_categories`;
+CREATE TABLE IF NOT EXISTS `vehicle_categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `image_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vehicle_categories`
+--
+
+INSERT INTO `vehicle_categories` (`id`, `name`, `description`, `image_url`, `created_at`, `updated_at`) VALUES
+(1, 'SUV', 'Véhicules spacieux et polyvalents, parfaits pour les familles et les longs trajets', NULL, '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
+(2, 'Berline', 'Voitures élégantes et confortables, idéales pour les déplacements professionnels', NULL, '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
+(3, 'Sport', 'Véhicules performants et design, pour une expérience de conduite unique', NULL, '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
+(4, 'Citadine', 'Petites voitures agiles, parfaites pour la ville', NULL, '2025-04-05 21:37:10', '2025-04-05 21:37:10'),
+(5, 'Utilitaire', 'Véhicules pratiques pour vos déménagements et transports', NULL, '2025-04-05 21:37:10', '2025-04-05 21:37:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_images`
+--
+
+DROP TABLE IF EXISTS `vehicle_images`;
+CREATE TABLE IF NOT EXISTS `vehicle_images` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `vehicle_id` int NOT NULL,
+  `image_path` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `vehicle_id` (`vehicle_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+>>>>>>> bda064ee217c2e815ff40465fee7349c88c9aae0
