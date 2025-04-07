@@ -1,0 +1,455 @@
+/* Conteneur principal */
+.containerr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px auto 0 auto;
+}
+
+/* Côté gauche avec les images */
+.lef {
+    flex: 1;
+    position: relative;
+}
+
+.grand-carre {
+    width: 100%;
+    aspect-ratio: 1;
+    position: relative;
+    margin: 0;
+
+}
+
+/* Coins décoratifs rouges */
+.petit-carre {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    border: 1.5px solid #800020;
+    background-color: transparent;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+    border-bottom: 0.3px solid #800020;
+    border-right: 0.3px solid #a52a2a;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    border-bottom: 0.5px solid #800020;
+    border-left: 0.5px solid #a52a2a;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    border-top: 0.3px solid #800020;
+    border-right: 0.3px solid #a52a2a;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-top: 0.3px solid #800020;
+    border-left: 0.3px solid #a52a2a;
+}
+
+/* Grille d'images */
+.cardd {
+    width: 1%;
+    height: 1400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: -25px;
+}
+
+/* Côté droit avec le texte */
+.right {
+    width: 60%;
+    padding-left: 45px;
+}
+
+.text-containerr {
+    margin-left: 0; /* Assure-toi qu'il n'y a pas de décalage à gauche */
+    padding-left: 20px; /* Ajoute un peu d'espace si besoin */
+    max-width: 700px; /* Pour éviter que le texte ne soit trop étalé */
+}
+
+.text-containerr h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.text-containerr p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+
+/* Style du bouton */
+.btn-donatee {
+    --clr-font-main: hsla(0 0% 20% / 100);
+    --btn-bg-1: rgb(245, 24, 24);
+    --btn-bg-2: hsl(0, 82%, 49%);
+    --btn-bg-color: hsla(360 100% 100% / 1);
+    --radii: 0.5em;
+    cursor: pointer;
+    padding: 0.9em 1.4em;
+    min-width: 120px;
+    min-height: 44px;
+    font-size: var(--size, 1rem);
+    font-weight: 500;
+    transition: 0.8s;
+    background-size: 280% auto;
+    background-image: linear-gradient(
+        325deg,
+        var(--btn-bg-2) 0%,
+        var(--btn-bg-1) 55%,
+        var(--btn-bg-2) 90%
+    );
+    border: none;
+    border-radius: var(--radii);
+    color: var(--btn-bg-color);
+    box-shadow:
+        0px 0px 20px rgba(182, 10, 47, 0.5),
+        0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+        inset 4px 4px 8px rgba(175, 230, 255, 0.5),
+        inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+    display: block;
+    margin-left: 5px;
+    opacity: 1;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 3s;
+}
+
+.btn-donatee:hover {
+    background-position: right top;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .containerr {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+
+    .lef, .right {
+        width: 100%;
+    }
+
+    .text-containerr h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Grand carré */
+.section3 {
+    width: 90%;
+}
+
+.grand-carre {
+    width: 435px;
+    height: 435px;
+    position: relative;
+    margin-left: 18px;
+}
+
+/* Petits carrés */
+.petit-carre {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    border: 1.5px solid #800020;
+    background-color: transparent;
+}
+
+/* Positionnement des petits carrés */
+.top-left {
+    top: 0;
+    left: 0;
+    border-bottom: 0.3px solid #800020;
+    border-right: 0.3px solid #a52a2a;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    border-bottom: 0.5px solid #800020;
+    border-left: 0.5px solid #a52a2a;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    border-top: 0.3px solid #800020;
+    border-right: 0.3px solid #a52a2a;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-top: 0.3px solid #800020;
+    border-left: 0.3px solid #a52a2a;
+}
+
+/* Carte superposée */
+.cardd {
+    width: 410px;
+    height: 410px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+    border: 2px solid #fff;
+}
+
+/* Photos */
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: -25px;
+}
+
+/* Conteneur principal pour la carte et le texte */
+.containerr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 20px auto 0 auto;
+}
+
+/* Conteneur pour le texte */
+.text-containerr {
+    margin-left: 5px;
+    margin-bottom: 25px;
+}
+
+.text-containerr h2 {
+    margin-top: 5px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.text-containerr p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.left {
+    width: 45%;
+}
+
+.right {
+    width: 55%;
+}
+
+.btn-donatee {
+    --clr-font-main: hsla(0 0% 20% / 100);
+    --btn-bg-1: rgb(245, 24, 24);
+    --btn-bg-2: hsl(0, 82%, 49%);
+    --btn-bg-color: hsla(360 100% 100% / 1);
+    --radii: 0.5em;
+    cursor: pointer;
+    padding: 0.9em 1.4em;
+    min-width: 120px;
+    min-height: 44px;
+    font-size: var(--size, 1rem);
+    font-weight: 500;
+    transition: 0.8s;
+    background-size: 280% auto;
+    background-image: linear-gradient(
+        325deg,
+        var(--btn-bg-2) 0%,
+        var(--btn-bg-1) 55%,
+        var(--btn-bg-2) 90%
+    );
+    border: none;
+    border-radius: var(--radii);
+    color: var(--btn-bg-color);
+    box-shadow:
+        0px 0px 20px rgba(182, 10, 47, 0.5),
+        0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+        inset 4px 4px 8px rgba(175, 230, 255, 0.5),
+        inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+    display: block;
+    margin-left: 5px;
+    opacity: 1;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 3s;
+}
+
+.btn-donatee:hover {
+    background-position: right top;
+}
+
+.btn-donatee:is(:focus, :focus-visible, :active) {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-donatee {
+        transition: linear;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.luxury-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.luxury-images {
+    flex: 1;
+    position: relative;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.image-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.image-grid img:hover {
+    transform: scale(1.05);
+}
+
+.image-border-left,
+.image-border-right {
+    position: absolute;
+    width: 20px;
+    height: 80px;
+    border: 2px solid #dc3545;
+    z-index: 1;
+}
+
+.image-border-left {
+    top: -10px;
+    left: -10px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.image-border-right {
+    bottom: -10px;
+    right: -10px;
+    border-left: none;
+    border-top: none;
+}
+
+.luxury-content {
+    flex: 1;
+}
+
+.luxury-content h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.luxury-content .main-text {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.luxury-content .secondary-text {
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.luxury-content .btn-primary {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: #dc3545;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.luxury-content .btn-primary:hover {
+    background-color: #c82333;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+    .luxury-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .luxury-images,
+    .luxury-content {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .luxury-content h2 {
+        font-size: 2rem;
+    }
+}

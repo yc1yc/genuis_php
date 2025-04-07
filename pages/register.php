@@ -9,6 +9,8 @@ if (isLoggedIn()) {
 
 // Traitement du formulaire d'inscription
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Vérification du token CSRF
+    verifyCsrfToken();
     $firstName = $_POST['first_name'] ?? '';
     $lastName = $_POST['last_name'] ?? '';
     $email = $_POST['email'] ?? '';
@@ -77,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$email]);
             
             if ($stmt->fetch()) {
-                $_SESSION['flash_error'] = "Cette adresse email est déjà utilisée";
+                setFlashMessage('error', "Cette adresse email est déjà utilisée");
             } else {
                 // Créer l'utilisateur
                 $stmt = $pdo->prepare("
@@ -97,123 +99,104 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $country
                 ]);
 
-                $_SESSION['flash_success'] = "Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.";
+                setFlashMessage('success', "Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.");
                 doRedirect('?page=login');
             }
         } catch (PDOException $e) {
-            $_SESSION['flash_error'] = "Une erreur est survenue lors de la création du compte";
+            setFlashMessage('error', "Une erreur est survenue lors de la création du compte");
         }
     } else {
-        $_SESSION['flash_error'] = implode("<br>", $errors);
+        setFlashMessage('error', implode("<br>", $errors));
     }
 }
 ?>
 
-<div class="login-container">
-    <div class="login-header">
-        <h1>Inscription</h1>
-        <p>Créez votre compte pour commencer à louer des véhicules</p>
-    </div>
-
-    <?php if (isset($_SESSION['flash_error'])): ?>
-        <div class="alert alert-danger">
-            <?php 
-            echo htmlspecialchars($_SESSION['flash_error']);
-            unset($_SESSION['flash_error']);
-            ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if (isset($_SESSION['flash_success'])): ?>
-        <div class="alert alert-success">
-            <?php 
-            echo htmlspecialchars($_SESSION['flash_success']);
-            unset($_SESSION['flash_success']);
-            ?>
-        </div>
-    <?php endif; ?>
-
-    <form class="login-form" action="" method="POST">
+<div class="register-container">
+    <form class="register-form" action="" method="POST">
         <?php echo csrfField(); ?>
         
-        <div class="form-row">
-            <div class="form-group">
-                <label for="first_name">Prénom</label>
-                <input type="text" id="first_name" name="first_name" required
-                       value="<?php echo htmlspecialchars($_POST['first_name'] ?? ''); ?>"
-                       class="form-control">
+        <div class="register-section">
+            <div class="register-header">
+                <h1><i class="fas fa-user-plus"></i> Inscription</h1>
+                <p>Créez votre compte pour commencer à louer des véhicules</p>
             </div>
+
+            <?php echo displayFlashMessages(); ?>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first_name">Prénom</label>
+                    <input type="text" id="first_name" name="first_name" required
+                           value="<?php echo htmlspecialchars($_POST['first_name'] ?? ''); ?>"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Nom</label>
+                    <input type="text" id="last_name" name="last_name" required
+                           value="<?php echo htmlspecialchars($_POST['last_name'] ?? ''); ?>"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required
+                           value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>"
+                           class="form-control">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" name="phone" required
+                           value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirmer le mot de passe</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required
+                           class="form-control">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="address">Adresse</label>
+                    <input type="text" id="address" name="address" required
+                           value="<?php echo htmlspecialchars($_POST['address'] ?? ''); ?>"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="city">Ville</label>
+                    <input type="text" id="city" name="city" required
+                           value="<?php echo htmlspecialchars($_POST['city'] ?? ''); ?>"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="postal_code">Code postal</label>
+                    <input type="text" id="postal_code" name="postal_code" required
+                           value="<?php echo htmlspecialchars($_POST['postal_code'] ?? ''); ?>"
+                           class="form-control">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="country">Pays</label>
+                    <input type="text" id="country" name="country" required
+                           value="<?php echo htmlspecialchars($_POST['country'] ?? ''); ?>"
+                           class="form-control">
+                </div>
+            <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+            <div class="register-footer">
+                <p>Déjà inscrit ? <a href="?page=login">Connectez-vous</a></p>
+            </div>
+            </div>
+
             
-            <div class="form-group">
-                <label for="last_name">Nom</label>
-                <input type="text" id="last_name" name="last_name" required
-                       value="<?php echo htmlspecialchars($_POST['last_name'] ?? ''); ?>"
-                       class="form-control">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required
-                   value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>"
-                   class="form-control">
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="password" id="password" name="password" required
-                       class="form-control">
-            </div>
-            
-            <div class="form-group">
-                <label for="confirm_password">Confirmer le mot de passe</label>
-                <input type="password" id="confirm_password" name="confirm_password" required
-                       class="form-control">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="phone">Téléphone</label>
-            <input type="tel" id="phone" name="phone" required
-                   value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>"
-                   class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label for="address">Adresse</label>
-            <input type="text" id="address" name="address" required
-                   value="<?php echo htmlspecialchars($_POST['address'] ?? ''); ?>"
-                   class="form-control">
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label for="city">Ville</label>
-                <input type="text" id="city" name="city" required
-                       value="<?php echo htmlspecialchars($_POST['city'] ?? ''); ?>"
-                       class="form-control">
-            </div>
-            
-            <div class="form-group">
-                <label for="postal_code">Code postal</label>
-                <input type="text" id="postal_code" name="postal_code" required
-                       value="<?php echo htmlspecialchars($_POST['postal_code'] ?? ''); ?>"
-                       class="form-control">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="country">Pays</label>
-            <input type="text" id="country" name="country" required
-                   value="<?php echo htmlspecialchars($_POST['country'] ?? ''); ?>"
-                   class="form-control">
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
-
-        <div class="login-footer">
-            <p>Déjà inscrit ? <a href="?page=login">Connectez-vous</a></p>
         </div>
     </form>
 </div>
