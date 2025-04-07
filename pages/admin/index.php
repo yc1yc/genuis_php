@@ -34,6 +34,11 @@ $adminPage = $_GET['admin_page'] ?? 'index';
                 <span>Paramètres</span>
             </a>
 
+            <a href="?page=admin&admin_page=categories" class="admin-nav-item <?php echo $adminPage === 'categories' ? 'active' : ''; ?>">
+                <i class="fas fa-tags"></i>
+                <span>Catégories</span>
+            </a>
+
             <a href="?page=admin&admin_page=reports" class="admin-nav-item <?php echo $adminPage === 'reports' ? 'active' : ''; ?>">
                 <i class="fas fa-chart-bar"></i>
                 <span>Rapports</span>
@@ -54,6 +59,19 @@ $adminPage = $_GET['admin_page'] ?? 'index';
                         break;
                     default:
                         require_once __DIR__ . '/vehicles.php';
+                        break;
+                }
+                break;
+
+            case 'categories':
+                $action = $_GET['action'] ?? 'list';
+                switch ($action) {
+                    case 'add':
+                    case 'edit':
+                        require_once __DIR__ . '/categorie.php';
+                        break;
+                    default:
+                        require_once __DIR__ . '/categories.php';
                         break;
                 }
                 break;
