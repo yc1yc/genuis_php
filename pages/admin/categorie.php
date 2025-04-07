@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Informations générales</h3>
-        </div>
+        </div>git 
         <div class="card-body">
             <div class="card-section">
                 <div class="form-group">
