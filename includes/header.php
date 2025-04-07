@@ -24,6 +24,10 @@ $currentUser = getCurrentUser();
     <link rel="stylesheet" href="/genuis_php/assets/css/slider.css">
     <link rel="stylesheet" href="/genuis_php/assets/css/modal.css">
     <link rel="stylesheet" href="/genuis_php/assets/css/luxury.css">
+    <link rel="stylesheet" href="/genuis_php/assets/css/video.css">
+    <link rel="stylesheet" href="/genuis_php/assets/css/service.css">
+    <link rel="stylesheet" href="/genuis_php/assets/css/team.css">
+    <link rel="stylesheet" href="/genuis_php/assets/css/locations.css">
     <?php if ($page === 'admin'): ?>
     <link rel="stylesheet" href="/genuis_php/assets/css/admin.css">
     <?php endif; ?>

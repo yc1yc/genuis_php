@@ -30,10 +30,11 @@ body {
 
 /* Layout */
 .container {
-    width: 92%;
-    max-width: 1200px;
+    width: 100%;
+    /*max-width: 1300px;*/
     margin: 0 auto;
     padding: 0 var(--container-padding);
+    
 }
 
 main {

@@ -1,0 +1,101 @@
+.compartment1 {
+  position: relative;
+  width: 100vw; /* Utilise toute la largeur de la viewport */
+  height: 455px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  margin-left: calc(-50vw + 50%); /* Centrage */
+  margin-right: calc(-50vw + 50%); /* Centrage */
+}
+
+.image-container1 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.image-container1 > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.overlay1 h2 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  margin-left: -70px;
+  margin-top: 70px;
+}
+
+.overlay1 p {
+  font-size: 1rem;
+  margin-left: -20px;
+  margin-top: 10px;
+}
+
+.card1 {
+  position: absolute;
+  top: 50%;
+  left: 110%;
+  transform: translate(-30%, -50%);
+  width: 6%;
+  height: 320px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  z-index: 2;
+}
+
+.card1 img {
+  width: 110%;
+  height: 170px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  margin-left: -5%;
+  margin-top: -13px;
+}
+
+.card21 {
+  left: 175%;
+  margin-left: 50px;
+}
+
+.card31 {
+  left: 240%;
+  margin-left: 98px;
+}
+
+.card1 h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-left: -20px;
+  text-align: center;
+}
+
+.card1 p {
+  font-size: 0.9rem;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.card1 .highlight {
+  color: #333;
+  font-weight: bold;
+}
