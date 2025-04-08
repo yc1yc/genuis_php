@@ -2,7 +2,7 @@
     <div class="hero-container">
         <div class="hero-slider">
             <div class="slider-item active" data-index="0">
-                <img src="/genuis_php/assets/images/cars/IMG_8149.JPG" alt="Voiture de luxe">
+                <img src="/genuis_php/assets/images/cars/brutal.jpg" alt="Voiture de luxe">
                 <div class="slider-overlay">
                     <div class="slider-content">
                         <h1>Location de Voitures de Luxe</h1>
@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="slider-item" data-index="1">
-                <img src="/genuis_php/assets/images/cars/IMG_8241.JPG" alt="Voiture sportive">
+                <img src="/genuis_php/assets/images/cars/young.avif" alt="Voiture sportive">
                 <div class="slider-overlay">
                     <div class="slider-content">
                         <h1>Performance et Élégance</h1>
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="slider-item" data-index="2">
-                <img src="/genuis_php/assets/images/cars/IMG_8213.JPG" alt="Voiture élégante">
+                <img src="/genuis_php/assets/images/cars/modern.avif" alt="Voiture élégante">
                 <div class="slider-overlay">
                     <div class="slider-content">
                         <h1>Votre Voyage Commence Ici</h1>
@@ -227,11 +227,7 @@
 
         
 
-        <section class="features">
-            <h2>Pourquoi choisir The Genuis ?</h2>
-        </section>
-
-       
+      
 
     </div>
 </main>
