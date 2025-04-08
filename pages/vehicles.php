@@ -103,23 +103,8 @@ try {
                     
                     <div class="vehicle-info">
                         <div class="info-row">
-                            <span class="label"><i class="fas fa-cog"></i> Transmission</span>
-                            <span class="value"><?php echo htmlspecialchars($vehicle['transmission']); ?></span>
-                        </div>
-                        
-                        <div class="info-row">
-                            <span class="label"><i class="fas fa-gas-pump"></i> Carburant</span>
-                            <span class="value"><?php echo htmlspecialchars($vehicle['fuel_type']); ?></span>
-                        </div>
-
-                        <div class="info-row">
-                            <span class="label"><i class="fas fa-users"></i> Places</span>
-                            <span class="value"><?php echo htmlspecialchars($vehicle['seats']); ?></span>
-                        </div>
-
-                        <div class="info-row">
                             <span class="label"><i class="fas fa-tag"></i> Prix/jour</span>
-                            <span class="value price"><?php echo number_format($vehicle['price_per_day'], 2, ',', ' '); ?> €</span>
+                            <span class="value"><?php echo number_format($vehicle['price_per_day'], 2, ',', ' '); ?> €</span>
                         </div>
                     </div>
                     <div class="vehicle-availability">
@@ -231,7 +216,7 @@ try {
                                     <li><strong>Année :</strong> <?php echo htmlspecialchars($vehicle['year']); ?></li>
                                     <li><strong>Transmission :</strong> <?php echo htmlspecialchars($vehicle['transmission']); ?></li>
                                     <li><strong>Carburant :</strong> <?php echo htmlspecialchars($vehicle['fuel_type']); ?></li>
-                                    <li><strong>Nombre de places :</strong> <?php echo htmlspecialchars($vehicle['seats']); ?></li>
+                                    <li><strong>Places :</strong> <?php echo htmlspecialchars($vehicle['seats']); ?></li>
                                     <li><strong>Prix par jour :</strong> <?php echo number_format($vehicle['price_per_day'], 2, ',', ' '); ?> €</li>
                                     </ul>
                                 </div>

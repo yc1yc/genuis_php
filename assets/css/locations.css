@@ -1,13 +1,12 @@
 .compartment1 {
   position: relative;
-  width: 100vw; /* Utilise toute la largeur de la viewport */
-  height: 455px; 
+  width: 30%; /* Largeur ajustée */
+  height: 455px; /* Hauteur ajustée */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
-  margin-left: calc(-50vw + 50%); /* Centrage */
-  margin-right: calc(-50vw + 50%); /* Centrage */
+  margin: 100px 0 0 0;
+  margin-left: 5%; /* Déplace le compartiment vers la gauche */
 }
 
 .image-container1 {
@@ -16,86 +15,93 @@
   height: 100%;
 }
 
-.image-container1 > img {
+.image-container1 img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Garde l'image bien ajustée */
 }
 
+/* Styles pour l'overlay */
 .overlay1 {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8); /* Filtre noir */
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
 }
 
+/* Styles pour les titres et les paragraphes dans l'overlay */
 .overlay1 h2 {
   font-size: 1.8rem;
   margin-bottom: 8px;
-  margin-left: -70px;
-  margin-top: 70px;
+  margin-left: -70px; /* Ajustement de l'espace à gauche */
+  margin-top: 70px; /* Ajouter de l'espace en haut */
 }
 
 .overlay1 p {
   font-size: 1rem;
-  margin-left: -20px;
-  margin-top: 10px;
+  margin-left: -20px; /* Ajustement de l'espace à gauche */
+  margin-top: 10px; /* Ajouter de l'espace en haut */
 }
 
+/* Styles pour la carte superposée */
 .card1 {
   position: absolute;
-  top: 50%;
-  left: 110%;
-  transform: translate(-30%, -50%);
-  width: 6%;
-  height: 320px;
+  top: 50%; /* Superpose la carte vers le milieu de l'image */
+  left: 110%; /* Position de la première carte */
+  transform: translate(-30%, -50%); /* Déplace légèrement vers la gauche */
+  width: 72%; /* Largeur ajustée */
+  height: 355px; /* Hauteur ajustée */
   background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre subtile */
   padding: 20px;
   text-align: center;
-  z-index: 2;
+  z-index: 2; /* Place la carte au-dessus de l'overlay */
 }
 
+/* Ajout des styles pour l'image dans les cartes */
 .card1 img {
-  width: 110%;
-  height: 170px;
-  object-fit: cover;
-  margin-bottom: 10px;
-  margin-left: -5%;
-  margin-top: -13px;
+  width: 110%; /* Largeur augmentée à 110% */
+  height: 170px; /* Hauteur fixée */
+  object-fit: cover; /* Ajuste l'image sans déformation */
+  margin-bottom: 10px; /* Espace entre l'image et le texte */
+  margin-left: -5%; /* Ajuste pour recentrer l'image */
+  margin-top: -13px; /* Réduit la marge en haut */
 }
 
+/* Ajout de deux autres cartes avec espace entre elles */
 .card21 {
-  left: 175%;
-  margin-left: 50px;
+  left: 175%; /* Position de la deuxième carte avec espace */
+  margin-left: 50px; /* Espace à droite de la première carte */
 }
 
 .card31 {
-  left: 240%;
-  margin-left: 98px;
+  left: 240%; /* Position de la troisième carte avec espace */
+  margin-left: 98px; /* Espace à droite de la deuxième carte */
 }
 
+/* Styles pour le texte dans les cartes */
 .card1 h3 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
+  margin-bottom: 5px;
+  font-size: 1.2rem; /* Taille plus petite pour le h3 */
   margin-top: 0;
   margin-left: -20px;
   text-align: center;
 }
 
 .card1 p {
-  font-size: 0.9rem;
+  font-size: 0.9rem; /* Légère réduction de la taille du texte des paragraphes */
   margin-left: 20px;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .card1 .highlight {
-  color: #333;
-  font-weight: bold;
+  color: #333; /* Couleur noir foncé */
+  font-weight: bold; /* Optionnel: pour rendre le texte en noir foncé plus visible */
 }

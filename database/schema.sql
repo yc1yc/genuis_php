@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `contact_messages` (
 
 --
 -- Table structure for table `options`
---
+--  
 
 DROP TABLE IF EXISTS `options`;
 CREATE TABLE IF NOT EXISTS `options` (
@@ -73,7 +73,7 @@ INSERT INTO `options` (`id`, `name`, `price_per_day`, `description`, `icon`, `cr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Table structure for table `password_resets`  
 --
 
 DROP TABLE IF EXISTS `password_resets`;
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
-  `expires_at` datetime NOT NULL,
+  `expires_at` datetime NOT NULL,               
   `used` tinyint(1) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -304,16 +304,28 @@ CREATE TABLE IF NOT EXISTS `vehicles` (
 -- Dumping data for table `vehicles`
 --
 
-INSERT INTO `vehicles` (`id`, `category_id`, `brand`, `model`, `year`, `registration_number`, `price_per_day`, `description`, `specifications`, `mileage`, `fuel_type`, `transmission`, `seats`, `doors`, `air_conditioning`, `image_url`, `gallery_images`, `is_available`, `created_at`, `updated_at`) VALUES
-(1, 3, 'BMW', 'M4 Competition', 2025, 'BM4525XY', 1000.00, 'Voiture sport de luxe avec des performances exceptionnelles. Parfaite pour les amateurs de sensations fortes.', 'Moteur 6 cylindres en ligne, 510 ch, 0-100 km/h en 3.9s', 1000, 'essence', 'automatique', 4, 2, 1, '/genuis_php/assets/images/vehicles/bmw-m4.jpg', '["/genuis_php/assets/images/gallery/bmw-m4-1.jpg","/genuis_php/assets/images/gallery/bmw-m4-2.jpg","/genuis_php/assets/images/gallery/bmw-m4-3.jpg"]', 1, '2025-04-05 21:47:03', '2025-04-05 21:47:03'),
-(2, 1, 'Range Rover', 'Sport', 2024, 'RR2024SP', 800.00, 'SUV luxueux combinant confort, espace et capacités tout-terrain.', 'Moteur V8, 525 ch, Suspension adaptative, Système tout-terrain intelligent', 2500, 'diesel', 'automatique', 5, 5, 1, '/genuis_php/assets/images/vehicles/range-rover-sport.jpg', '["/genuis_php/assets/images/gallery/range-sport-1.jpg","/genuis_php/assets/images/gallery/range-sport-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
-(3, 2, 'Mercedes', 'Classe S', 2024, 'MS2024LX', 750.00, 'Berline haut de gamme incarnant le luxe et le confort absolu.', 'Moteur V6, 435 ch, Conduite semi-autonome, Intérieur cuir premium', 3000, 'hybride', 'automatique', 5, 4, 1, '/genuis_php/assets/images/vehicles/mercedes-s.jpg', '["/genuis_php/assets/images/gallery/mercedes-s-1.jpg","/genuis_php/assets/images/gallery/mercedes-s-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
-(4, 4, 'Peugeot', '208', 2024, 'PG2024CT', 200.00, 'Citadine moderne, économique et agile pour la ville.', 'Moteur 1.2L, 100 ch, Système d''aide au stationnement, Écran tactile 10"', 5000, 'essence', 'manuelle', 5, 5, 1, '/genuis_php/assets/images/vehicles/peugeot-208.jpg', '["/genuis_php/assets/images/gallery/peugeot-208-1.jpg","/genuis_php/assets/images/gallery/peugeot-208-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
-(5, 5, 'Renault', 'Trafic', 2024, 'RT2024UT', 300.00, 'Utilitaire spacieux et pratique, idéal pour les déménagements.', 'Volume de chargement 8m³, Charge utile 1200kg, Radar de recul', 8000, 'diesel', 'manuelle', 3, 4, 1, '/genuis_php/assets/images/vehicles/renault-trafic.jpg', '["/genuis_php/assets/images/gallery/renault-trafic-1.jpg","/genuis_php/assets/images/gallery/renault-trafic-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
-(6, 3, 'Porsche', '911 GT3', 2024, 'PO2024GT', 1200.00, 'Voiture de sport légendaire offrant des performances exceptionnelles.', 'Moteur 6 cylindres à plat, 510 ch, 0-100 km/h en 3.4s', 1500, 'essence', 'automatique', 2, 2, 1, '/genuis_php/assets/images/vehicles/porsche-911.jpg', '["/genuis_php/assets/images/gallery/porsche-911-1.jpg","/genuis_php/assets/images/gallery/porsche-911-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
-(7, 1, 'Audi', 'Q7', 2024, 'AQ2024Q7', 600.00, 'SUV familial premium avec technologie de pointe.', 'Moteur V6 TDI, 286 ch, 7 places, Système audio Bang & Olufsen', 4000, 'diesel', 'automatique', 7, 5, 1, '/genuis_php/assets/images/vehicles/audi-q7.jpg', '["/genuis_php/assets/images/gallery/audi-q7-1.jpg","/genuis_php/assets/images/gallery/audi-q7-2.jpg"]', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00');
+INSERT INTO `vehicles` (`id`, `category_id`, `brand`, `model`, `year`, `registration_number`, `price_per_day`, `description`, `specifications`, `mileage`, `fuel_type`, `transmission`, `seats`, `doors`, `air_conditioning`, `image_url`, `is_available`, `created_at`, `updated_at`) VALUES
+(1, 3, 'BMW', 'M4 Competition', 2025, 'BM4525XY', 1000.00, 'Voiture sport de luxe avec des performances exceptionnelles. Parfaite pour les amateurs de sensations fortes.', 'Moteur 6 cylindres en ligne, 510 ch, 0-100 km/h en 3.9s', 1000, 'essence', 'automatique', 4, 2, 1, '/genuis_php/assets/images/vehicles/bmw-m4.jpg', 1, '2025-04-05 21:47:03', '2025-04-05 21:47:03'),
+(2, 1, 'Range Rover', 'Sport', 2024, 'RR2024SP', 800.00, 'SUV luxueux combinant confort, espace et capacités tout-terrain.', 'Moteur V8, 525 ch, Suspension adaptative, Système tout-terrain intelligent', 2500, 'diesel', 'automatique', 5, 5, 1, '/genuis_php/assets/images/vehicles/range-rover-sport.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(3, 2, 'Mercedes', 'Classe S', 2024, 'MS2024LX', 750.00, 'Berline haut de gamme incarnant le luxe et le confort absolu.', 'Moteur V6, 435 ch, Conduite semi-autonome, Intérieur cuir premium', 3000, 'hybride', 'automatique', 5, 4, 1, '/genuis_php/assets/images/vehicles/mercedes-s.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(4, 4, 'Peugeot', '208', 2024, 'PG2024CT', 200.00, 'Citadine moderne, économique et agile pour la ville.', 'Moteur 1.2L, 100 ch, Système d''aide au stationnement, Écran tactile 10"', 5000, 'essence', 'manuelle', 5, 5, 1, '/genuis_php/assets/images/vehicles/peugeot-208.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(5, 5, 'Renault', 'Trafic', 2024, 'RT2024UT', 300.00, 'Utilitaire spacieux et pratique, idéal pour les déménagements.', 'Volume de chargement 8m³, Charge utile 1200kg, Radar de recul', 8000, 'diesel', 'manuelle', 3, 4, 1, '/genuis_php/assets/images/vehicles/renault-trafic.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00');
+(6, 3, 'BMW', 'M4 Competition', 2025, 'BM5525XY', 1000.00, 'Voiture sport de luxe avec des performances exceptionnelles. Parfaite pour les amateurs de sensations fortes.', 'Moteur 6 cylindres en ligne, 510 ch, 0-100 km/h en 3.9s', 1000, 'essence', 'automatique', 4, 2, 1, '/genuis_php/assets/images/vehicles/bmw-m4.jpg', 1, '2025-04-05 21:47:03', '2025-04-05 21:47:03'),
+(7, 1, 'Range Rover', 'Sport', 2024, 'RR3024SP', 800.00, 'SUV luxueux combinant confort, espace et capacités tout-terrain.', 'Moteur V8, 525 ch, Suspension adaptative, Système tout-terrain intelligent', 2500, 'diesel', 'automatique', 5, 5, 1, '/genuis_php/assets/images/vehicles/range-rover-sport.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(8, 3, 'Mercedes', 'Classe S', 2024, 'MS3024LX', 750.00, 'Berline haut de gamme incarnant le luxe et le confort absolu.', 'Moteur V6, 435 ch, Conduite semi-autonome, Intérieur cuir premium', 3000, 'hybride', 'automatique', 5, 4, 1, '/genuis_php/assets/images/vehicles/mercedes-s.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(9, 1, 'Peugeot', '208', 2024, 'PG3024CT', 200.00, 'Citadine moderne, économique et agile pour la ville.', 'Moteur 1.2L, 100 ch, Système d''aide au stationnement, Écran tactile 10"', 5000, 'essence', 'manuelle', 5, 5, 1, '/genuis_php/assets/images/vehicles/peugeot-208.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(10, 2, 'Renault', 'Trafic', 2024, 'RT3024UT', 300.00, 'Utilitaire spacieux et pratique, idéal pour les déménagements.', 'Volume de chargement 8m³, Charge utile 1200kg, Radar de recul', 8000, 'diesel', 'manuelle', 3, 4, 1, '/genuis_php/assets/images/vehicles/renault-trafic.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(11, 4, 'BMW', 'M4 Competition', 2025, 'BM6525XY', 1000.00, 'Voiture sport de luxe avec des performances exceptionnelles. Parfaite pour les amateurs de sensations fortes.', 'Moteur 6 cylindres en ligne, 510 ch, 0-100 km/h en 3.9s', 1000, 'essence', 'automatique', 4, 2, 1, '/genuis_php/assets/images/vehicles/bmw-m4.jpg', 1, '2025-04-05 21:47:03', '2025-04-05 21:47:03'),
+(12, 5, 'Range Rover', 'Sport', 2024, 'RR9024SP', 800.00, 'SUV luxueux combinant confort, espace et capacités tout-terrain.', 'Moteur V8, 525 ch, Suspension adaptative, Système tout-terrain intelligent', 2500, 'diesel', 'automatique', 5, 5, 1, '/genuis_php/assets/images/vehicles/range-rover-sport.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(13, 3, 'Mercedes', 'Classe S', 2024, 'MS4024LX', 750.00, 'Berline haut de gamme incarnant le luxe et le confort absolu.', 'Moteur V6, 435 ch, Conduite semi-autonome, Intérieur cuir premium', 3000, 'hybride', 'automatique', 5, 4, 1, '/genuis_php/assets/images/vehicles/mercedes-s.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(14, 1, 'Peugeot', '208', 2024, 'PG4024CT', 200.00, 'Citadine moderne, économique et agile pour la ville.', 'Moteur 1.2L, 100 ch, Système d''aide au stationnement, Écran tactile 10"', 5000, 'essence', 'manuelle', 5, 5, 1, '/genuis_php/assets/images/vehicles/peugeot-208.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(15, 4, 'Renault', 'Trafic', 2024, 'RT4024UT', 300.00, 'Utilitaire spacieux et pratique, idéal pour les déménagements.', 'Volume de chargement 8m³, Charge utile 1200kg, Radar de recul', 8000, 'diesel', 'manuelle', 3, 4, 1, '/genuis_php/assets/images/vehicles/renault-trafic.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(16, 5, 'BMW', 'M4 Competition', 2025, 'BM7525XY', 1000.00, 'Voiture sport de luxe avec des performances exceptionnelles. Parfaite pour les amateurs de sensations fortes.', 'Moteur 6 cylindres en ligne, 510 ch, 0-100 km/h en 3.9s', 1000, 'essence', 'automatique', 4, 2, 1, '/genuis_php/assets/images/vehicles/bmw-m4.jpg', 1, '2025-04-05 21:47:03', '2025-04-05 21:47:03'),
+(17, 5, 'Range Rover', 'Sport', 2024, 'RR5024SP', 800.00, 'SUV luxueux combinant confort, espace et capacités tout-terrain.', 'Moteur V8, 525 ch, Suspension adaptative, Système tout-terrain intelligent', 2500, 'diesel', 'automatique', 5, 5, 1, '/genuis_php/assets/images/vehicles/range-rover-sport.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(18, 3, 'Mercedes', 'Classe S', 2024, 'MS6024LX', 750.00, 'Berline haut de gamme incarnant le luxe et le confort absolu.', 'Moteur V6, 435 ch, Conduite semi-autonome, Intérieur cuir premium', 3000, 'hybride', 'automatique', 5, 4, 1, '/genuis_php/assets/images/vehicles/mercedes-s.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(19, 1, 'Peugeot', '208', 2024, 'PG5024CT', 200.00, 'Citadine moderne, économique et agile pour la ville.', 'Moteur 1.2L, 100 ch, Système d''aide au stationnement, Écran tactile 10"', 5000, 'essence', 'manuelle', 5, 5, 1, '/genuis_php/assets/images/vehicles/peugeot-208.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00'),
+(20, 2, 'Renault', 'Trafic', 2024, 'RT5024UT', 300.00, 'Utilitaire spacieux et pratique, idéal pour les déménagements.', 'Volume de chargement 8m³, Charge utile 1200kg, Radar de recul', 8000, 'diesel', 'manuelle', 3, 4, 1, '/genuis_php/assets/images/vehicles/renault-trafic.jpg', 1, '2025-04-07 13:42:00', '2025-04-07 13:42:00');
 
--- --------------------------------------------------------
 
 --
 -- Table structure for table `vehicle_categories`

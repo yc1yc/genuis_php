@@ -1,9 +1,40 @@
 <main class="home-page">
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Bienvenue chez The Genuis</h1>
-            <p>Location de voitures de qualité à des prix compétitifs</p>
-            <a href="?page=vehicles" class="btn btn-primary">Réservez maintenant</a>
+    <div class="hero-container">
+        <div class="hero-slider">
+            <div class="slider-item active" data-index="0">
+                <img src="/genuis_php/assets/images/cars/brutal.jpg" alt="Voiture de luxe">
+                <div class="slider-overlay">
+                    <div class="slider-content">
+                        <h1>Location de Voitures de Luxe</h1>
+                        <p>Vivez une expérience de conduite exceptionnelle</p>
+                        <a href="?page=reservation" class="btn btn-primary">Réserver Maintenant</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-item" data-index="1">
+                <img src="/genuis_php/assets/images/cars/young.avif" alt="Voiture sportive">
+                <div class="slider-overlay">
+                    <div class="slider-content">
+                        <h1>Performance et Élégance</h1>
+                        <p>Choisissez parmi notre flotte de voitures d'exception</p>
+                        <a href="?page=vehicles" class="btn btn-primary">Découvrir nos Véhicules</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-item" data-index="2">
+                <img src="/genuis_php/assets/images/cars/modern.avif" alt="Voiture élégante">
+                <div class="slider-overlay">
+                    <div class="slider-content">
+                        <h1>Votre Voyage Commence Ici</h1>
+                        <p>Réservation simple et rapide</p>
+                        <a href="?page=reservation" class="btn btn-primary">Commencer</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-prev" aria-label="Slide précédente">&#10094;</button>
+                <button class="slider-next" aria-label="Slide suivante">&#10095;</button>
+            </div>
         </div>
     </div>
 
@@ -150,30 +181,31 @@
         </div>
 
         <div class="compartment1">
-            <div class="image-container1">
-                <img src="<?php echo $baseUrl; ?>/assets/images/location-symbol-with-building.jpg" alt="Image de fond">
-                <div class="overlay1">
-                    <h2>Decouvrez<br>les différents endroits<br>où vous trouverez <br>Genius rent a car</h2>
-                    <p>Que ce soit dans les grandes villes, <br>près des aéroports ou dans des destinations<br> de luxe, notre service de location de voitures <br> de prestige est toujours à votre portée,<br>où que vous soyez.</p>
-                </div>
-                <!-- Carte superposée et deux cartes supplémentaires -->
-                <div class="card1 card11">
-                    <img src="<?php echo $baseUrl; ?>/assets/images/beautiful-landscape-shot-metro-station-paris-cloudy-day_181624-28829.jpg" alt="Photo 1">
-                    <h3>Gare de Lyon - Paris</h3>
-                    <p><span class="highlight">Adresse : <br> </span> <br>207 Rue de Bercy, 75012 Paris, France</p>
-                </div>
-                <div class="card1 card21">
-                    <img src="<?php echo $baseUrl; ?>/assets/images/traveling-by-train-lifestyle_23-2150578039.jpg" alt="Photo 2">
-                    <h3>Gare Saint-Charles - Marseille</h3>
-                    <p><span class="highlight">Adresse :<br> </span> <br>Gare Saint-Charles, 13001 Marseille, France</p>
-                </div>
-                <div class="card1 card31">
-                    <img src="<?php echo $baseUrl; ?>/assets/images/building_1127-3357.jpg" alt="Photo 3">
-                    <h3>Gare de Lille Flandres - Lille</h3>
-                    <p><span class="highlight">Adresse :<br></span> <br>Place des Buisses, 59800 Lille, France</p>
-                </div>
-            </div>
-        </div>
+  <div class="image-container1">
+      <img src="<?php echo $baseUrl; ?>/assets/images/location-symbol-with-building.jpg" alt="Image de fond">
+      <div class="overlay1">
+          <h2>Decouvrez<br>les différents endroits<br>où vous trouverez <br>Genius rent a car</h2>
+          <p>Que ce soit dans les grandes villes, <br>près des aéroports ou dans des destinations<br> de luxe, notre service de location de voitures <br> de prestige est toujours à votre portée,<br>où que vous soyez.</p>
+      </div>
+      <!-- Carte superposée et deux cartes supplémentaires -->
+      <div class="card1 card11">
+          <img src="<?php echo $baseUrl; ?>/assets/images/beautiful-landscape-shot-metro-station-paris-cloudy-day_181624-28829.jpg" alt="Photo 1">
+          <h3>Gare de Lyon - Paris</h3>
+          <p><span class="highlight">Adresse : <br> </span> <br>207 Rue de Bercy, 75012 Paris, France</p>
+      </div>
+      <div class="card1 card21">
+          <img src="<?php echo $baseUrl; ?>/assets/images/traveling-by-train-lifestyle_23-2150578039.jpg" alt="Photo 2">
+          <h3>Gare Saint-Charles - Marseille</h3>
+          <p><span class="highlight">Adresse :<br> </span> <br>Gare Saint-Charles, 13001 Marseille, France</p>
+      </div>
+      <div class="card1 card31">
+          <img src="<?php echo $baseUrl; ?>/assets/images/building_1127-3357.jpg" alt="Photo 3">
+          <h3>Gare de Lille Flandres - Lille</h3>
+          <p><span class="highlight">Adresse :<br></span> <br>Place des Buisses, 59800 Lille, France</p>
+      </div>
+      
+  </div>
+</div>
 
         <section class="features">
             <h2>Pourquoi choisir The Genuis ?</h2>
@@ -195,14 +227,12 @@
 
         
 
-        <section class="features">
-            <h2>Pourquoi choisir The Genuis ?</h2>
-        </section>
-
-       
+      
 
     </div>
 </main>
 
+<link rel="stylesheet" href="<?php echo $baseUrl; ?>/assets/css/hero-slider.css">
 <script src="<?php echo $baseUrl; ?>/assets/js/video.js"></script>
+<script src="<?php echo $baseUrl; ?>/assets/js/hero-slider.js"></script>
 </body>
