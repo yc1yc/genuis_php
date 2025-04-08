@@ -91,11 +91,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 
 -- --------------------------------------------------------
 
-<<<<<<< HEAD
--- Create admin user
-INSERT INTO users (first_name, last_name, email, password, role) VALUES
-('Admin', 'System', 'admin@thegenuis.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admi
-=======
+
 --
 -- Table structure for table `payments`
 --
@@ -159,7 +155,8 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `vehicle_id` (`vehicle_id`)
+  KEY `vehicle_id` (`vehicle_id`),
+  CONSTRAINT `vehicle_images_ibfk_1` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -205,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   KEY `user_id` (`user_id`),
   KEY `vehicle_id` (`vehicle_id`),
   KEY `reservation_id` (`reservation_id`)
-) ;
+) ENGINE=InnoDB;
 
 -- --------------------------------------------------------
 
@@ -293,14 +290,15 @@ CREATE TABLE IF NOT EXISTS `vehicles` (
   `doors` int DEFAULT NULL,
   `air_conditioning` tinyint(1) DEFAULT '1',
   `image_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `gallery_images` text COLLATE utf8mb4_general_ci,
+  
   `is_available` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `registration_number` (`registration_number`),
-  KEY `category_id` (`category_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `vehicle_categories` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vehicles`
@@ -349,6 +347,38 @@ INSERT INTO `vehicle_categories` (`id`, `name`, `description`, `image_url`, `cre
 -- Table structure for table `vehicle_images`
 --
 
+--
+-- Table structure for table `vehicle_gallery`
+--
+
+DROP TABLE IF EXISTS `vehicle_gallery`;
+CREATE TABLE IF NOT EXISTS `vehicle_gallery` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `vehicle_id` int NOT NULL,
+  `image_url` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `sort_order` int DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `vehicle_id` (`vehicle_id`),
+  CONSTRAINT `vehicle_gallery_ibfk_1` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Insert gallery images from vehicles table
+--
+INSERT INTO `vehicle_gallery` (`vehicle_id`, `image_url`, `sort_order`)
+SELECT v.id, TRIM('"' FROM JSON_UNQUOTE(JSON_EXTRACT(v.gallery_images, CONCAT('$[', numbers.n, ']')))) as image_url, numbers.n
+FROM vehicles v
+CROSS JOIN (
+    SELECT 0 as n UNION SELECT 1 UNION SELECT 2
+) numbers
+WHERE JSON_EXTRACT(v.gallery_images, CONCAT('$[', numbers.n, ']')) IS NOT NULL;
+
+--
+-- Table structure for table `vehicle_images`
+--
+
 DROP TABLE IF EXISTS `vehicle_images`;
 CREATE TABLE IF NOT EXISTS `vehicle_images` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -357,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `vehicle_images` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `vehicle_id` (`vehicle_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
