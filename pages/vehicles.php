@@ -88,7 +88,7 @@ try {
             <div class="vehicle-card" data-brand="<?php echo htmlspecialchars($vehicle['brand']); ?>">
                 <div class="vehicle-image">
                     <?php if (!empty($vehicle['image_url'])): ?>
-                        <img src="<?php echo htmlspecialchars($vehicle['image_url']); ?>" alt="<?php echo htmlspecialchars($vehicle['brand'] . ' ' . $vehicle['model']); ?>">
+                        <img src="/<?php echo ltrim(htmlspecialchars($vehicle['image_url']), './'); ?>" alt="<?php echo htmlspecialchars($vehicle['brand'] . ' ' . $vehicle['model']); ?>">
                     <?php else: ?>
                         <div class="vehicle-image-placeholder">
                             <i class="fas fa-car"></i>
@@ -217,7 +217,7 @@ try {
                         </div>
                         <div class="modal-body">
                             <?php if (!empty($vehicle['image_url'])): ?>
-                                <img src="<?php echo htmlspecialchars($vehicle['image_url']); ?>" 
+                                <img src="/<?php echo ltrim(htmlspecialchars($vehicle['image_url']), './'); ?>" 
                                      alt="<?php echo htmlspecialchars($vehicle['brand'] . ' ' . $vehicle['model']); ?>"
                                      class="modal-image">
                             <?php endif; ?>
