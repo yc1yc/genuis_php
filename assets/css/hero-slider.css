@@ -1,16 +1,21 @@
 .hero-container {
-    width: 100%;
+    width: 110%;             /* On dépasse un peu la largeur normale */
     height: 100vh;
     position: relative;
     overflow: hidden;
-    border:1px solid black;
+    margin-top: -20px;
+    margin-left: -5%;        /* Pour recentrer le conteneur après élargissement */
+    box-sizing: border-box;
 }
+
 
 .hero-slider {
     width: 100%;
     height: 100%;
     position: relative;
-    border:1px solid black;
+    padding-left: 20px;
+    padding-right: 20px; /* Élague visuellement sur les côtés */
+    box-sizing: border-box; /* Pour que padding ne déborde pas du 100% */
 }
 
 .slider-item {
@@ -78,7 +83,11 @@
     font-size: 3.5rem;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    display: inline-block;
 }
+  
+
+
 
 .slider-content p {
     font-size: 1.5rem;
@@ -99,11 +108,13 @@
 .slider-controls {
     position: absolute;
     top: 50%;
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     transform: translateY(-50%);
     z-index: 10;
+    margin-left: 10px;
+    
 }
 
 .slider-prev, .slider-next {
