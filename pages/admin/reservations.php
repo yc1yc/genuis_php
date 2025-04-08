@@ -15,39 +15,89 @@ if ($action && $reservationId) {
         case 'status':
             if (in_array($status, ['confirmed', 'cancelled', 'completed'])) {
                 try {
-                    $stmt = $pdo->prepare("UPDATE reservations SET status = ? WHERE id = ?");
-                    $stmt->execute([$status, $reservationId]);
+                    // Debug info
+                    error_log("Attempting to update reservation " . $reservationId . " to status: " . $status);
+
+                    // First check if reservation exists and can be confirmed
+                    $stmt = $pdo->prepare("SELECT r.*, v.id as vehicle_id 
+                        FROM reservations r 
+                        JOIN vehicles v ON r.vehicle_id = v.id 
+                        WHERE r.id = ? AND r.status = 'pending'");
+                    $stmt->execute([$reservationId]);
+                    $reservation = $stmt->fetch();
+
+                    error_log("Reservation data: " . print_r($reservation, true));
+
+                    if (!$reservation) {
+                        throw new PDOException('La réservation n\'existe pas ou n\'est pas en attente.');
+                    }
+
+                    // Begin transaction
+                    $pdo->beginTransaction();
 
                     if ($status === 'confirmed') {
-                        // Récupérer les informations pour l'email
-                        $stmt = $pdo->prepare("
-                            SELECT r.*, 
-                                   u.email, u.first_name, u.last_name,
-                                   CONCAT(v.brand, ' ', v.model) as vehicle_name
-                            FROM reservations r
-                            JOIN users u ON r.user_id = u.id
-                            JOIN vehicles v ON r.vehicle_id = v.id
-                            WHERE r.id = ?
-                        ");
+                        // Update reservation status
+                        $stmt = $pdo->prepare("UPDATE reservations SET status = 'confirmed', updated_at = NOW() WHERE id = ?");
+                        if (!$stmt->execute([$reservationId])) {
+                            error_log("Failed to update reservation status: " . print_r($stmt->errorInfo(), true));
+                            throw new PDOException('Erreur lors de la mise à jour du statut.');
+                        }
+
+                        // Mark vehicle as unavailable
+                        $stmt = $pdo->prepare("UPDATE vehicles SET is_available = 0 WHERE id = ?");
+                        if (!$stmt->execute([$reservation['vehicle_id']])) {
+                            error_log("Failed to update vehicle availability: " . print_r($stmt->errorInfo(), true));
+                            throw new PDOException('Erreur lors de la mise à jour du véhicule.');
+                        }
+
+                        $_SESSION['flash_success'] = 'La réservation a été confirmée avec succès.';
+                        error_log("Successfully confirmed reservation " . $reservationId);
+                    } elseif ($status === 'cancelled') {
+                        // Check if reservation exists and can be cancelled
+                        $stmt = $pdo->prepare("SELECT r.*, v.id as vehicle_id, v.is_available 
+                            FROM reservations r 
+                            JOIN vehicles v ON r.vehicle_id = v.id 
+                            WHERE r.id = ? AND r.status IN ('pending', 'confirmed')");
                         $stmt->execute([$reservationId]);
                         $reservation = $stmt->fetch();
-                        
-                        if ($reservation) {
-                            sendReservationConfirmationEmail($reservation);
-                            $_SESSION['flash_success'] = 'Réservation confirmée et email envoyé au client';
+
+                        if (!$reservation) {
+                            throw new PDOException('La réservation n\'existe pas ou ne peut pas être annulée.');
                         }
+
+                        // Update reservation status
+                        $stmt = $pdo->prepare("UPDATE reservations SET status = 'cancelled', updated_at = NOW(), cancellation_reason = ? WHERE id = ?");
+                        $stmt->execute(['Annulée par l\'administrateur', $reservationId]);
+
+                        // If it was confirmed, make vehicle available again
+                        if ($reservation['status'] === 'confirmed') {
+                            $stmt = $pdo->prepare("UPDATE vehicles SET is_available = 1 WHERE id = ?");
+                            $stmt->execute([$reservation['vehicle_id']]);
+                        }
+                        
+                        $_SESSION['flash_success'] = 'La réservation a été annulée avec succès.';
+                        error_log('Reservation ' . $reservationId . ' cancelled by admin');
                     } else {
-                        $_SESSION['flash_success'] = 'Statut de la réservation mis à jour';
+                        $_SESSION['flash_success'] = 'Statut de la réservation mis à jour avec succès.';
                     }
+
+                    // Commit transaction
+                    $pdo->commit();
                 } catch (PDOException $e) {
-                    $_SESSION['flash_error'] = 'Erreur lors de la mise à jour de la réservation';
+                    // Rollback transaction on error
+                    $pdo->rollBack();
+                    error_log('Error updating reservation: ' . $e->getMessage());
+                    error_log('Reservation ID: ' . $reservationId);
+                    error_log('Status: ' . $status);
+                    $_SESSION['flash_error'] = 'Erreur lors de la mise à jour de la réservation: ' . $e->getMessage();
                 }
             }
             break;
     }
     
     // Rediriger après le traitement
-    doRedirect('?page=admin&admin_page=reservations');
+    header('Location: ?page=admin/reservations');
+    exit;
 }
 
 // Filtres
@@ -154,8 +204,8 @@ $stmt = $pdo->query("
 ");
 $stats = $stmt->fetch();
 
-function formatNumber($value) {
-    return is_null($value) ? '0' : number_format($value);
+function formatNumber($value, $decimals = 0) {
+    return number_format($value, $decimals, ',', ' ');
 }
 
 function getStatusClass($status) {
@@ -223,17 +273,21 @@ function getStatusLabel($status) {
         </div>
     </div>
 
-    <?php 
-    // Afficher les messages flash s'il y en a
-    if (isset($_SESSION['flash_success'])) {
-        echo '<div class="alert alert-success">' . htmlspecialchars($_SESSION['flash_success']) . '</div>';
-        unset($_SESSION['flash_success']);
-    }
-    if (isset($_SESSION['flash_error'])) {
-        echo '<div class="alert alert-danger">' . htmlspecialchars($_SESSION['flash_error']) . '</div>';
-        unset($_SESSION['flash_error']);
-    }
-    ?>
+    <?php if (isset($_SESSION['flash_success'])): ?>
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i>
+            <?php echo htmlspecialchars($_SESSION['flash_success']); ?>
+        </div>
+        <?php unset($_SESSION['flash_success']); ?>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['flash_error'])): ?>
+        <div class="alert alert-danger">
+            <i class="fas fa-exclamation-circle"></i>
+            <?php echo htmlspecialchars($_SESSION['flash_error']); ?>
+        </div>
+        <?php unset($_SESSION['flash_error']); ?>
+    <?php endif; ?>
 
     <div class="stats-grid">
         <div class="stat-card">
@@ -324,7 +378,7 @@ function getStatusLabel($status) {
                         echo $duration->days . ' jours';
                         ?>
                     </td>
-                    <td><?php echo formatNumber($reservation['total_price'], 2); ?> €</td>
+                    <td><?php echo number_format($reservation['total_price'], 2, ',', ' '); ?> €</td>
                     <td>
                         <span class="status-badge status-<?php echo getStatusClass($reservation['status']); ?>">
                             <?php echo getStatusLabel($reservation['status']); ?>
