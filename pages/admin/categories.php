@@ -3,6 +3,38 @@ require_once __DIR__ . '/../../includes/auth.php';
 $user = requireAuth('admin');
 require_once __DIR__ . '/../../includes/functions.php';
 
+// Handle category deletion
+if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
+    try {
+        $pdo = getPDO();
+        
+        // First check if there are any vehicles in this category
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM vehicles WHERE category_id = ?");
+        $stmt->execute([intval($_GET['id'])]);
+        $vehicleCount = $stmt->fetchColumn();
+        
+        if ($vehicleCount > 0) {
+            setFlashMessage('error', 'Impossible de supprimer cette catégorie car elle contient des véhicules.');
+        } else {
+            // Delete the category
+            $stmt = $pdo->prepare("DELETE FROM vehicle_categories WHERE id = ?");
+            $stmt->execute([intval($_GET['id'])]);
+            
+            if ($stmt->rowCount() > 0) {
+                setFlashMessage('success', 'La catégorie a été supprimée avec succès.');
+            } else {
+                setFlashMessage('error', 'Catégorie non trouvée.');
+            }
+        }
+    } catch (PDOException $e) {
+        setFlashMessage('error', 'Erreur lors de la suppression de la catégorie.');
+    }
+    
+    // Redirect back to categories list
+    header('Location: ?page=admin&admin_page=categories');
+    exit;
+}
+
 try {
     $pdo = getPDO();
     $stmt = $pdo->query("SELECT * FROM vehicle_categories ORDER BY name");
@@ -37,6 +69,13 @@ try {
 <?php if ($message = getFlashMessage('success')): ?>
     <div class="alert alert-success">
         <i class="fas fa-check-circle"></i>
+        <?php echo htmlspecialchars($message); ?>
+    </div>
+<?php endif; ?>
+
+<?php if ($message = getFlashMessage('error')): ?>
+    <div class="alert alert-danger">
+        <i class="fas fa-exclamation-circle"></i>
         <?php echo htmlspecialchars($message); ?>
     </div>
 <?php endif; ?>
