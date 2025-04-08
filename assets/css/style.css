@@ -3575,7 +3575,7 @@ textarea {
 
 /* Footer Styles */
 .main-footer {
-    background-color: #8b0000;
+    background-color: #343a40;
     color: #ffffff;
     padding: 3rem 0 0;
 }
@@ -3647,7 +3647,7 @@ textarea {
 }
 
 .footer-bottom {
-    background-color: #660000;
+    background-color: #212529;
     padding: 1.5rem 0;
     margin-top: 2rem;
 }
