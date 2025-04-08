@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `contact_messages` (
 
 --
 -- Table structure for table `options`
---
+--  
 
 DROP TABLE IF EXISTS `options`;
 CREATE TABLE IF NOT EXISTS `options` (
@@ -73,7 +73,7 @@ INSERT INTO `options` (`id`, `name`, `price_per_day`, `description`, `icon`, `cr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Table structure for table `password_resets`  
 --
 
 DROP TABLE IF EXISTS `password_resets`;
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
-  `expires_at` datetime NOT NULL,
+  `expires_at` datetime NOT NULL,               
   `used` tinyint(1) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),

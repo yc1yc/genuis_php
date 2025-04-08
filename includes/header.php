@@ -28,6 +28,7 @@ $currentUser = getCurrentUser();
     <link rel="stylesheet" href="/genuis_php/assets/css/service.css">
     <link rel="stylesheet" href="/genuis_php/assets/css/team.css">
     <link rel="stylesheet" href="/genuis_php/assets/css/locations.css">
+    <link rel="stylesheet" href="/genuis_php/assets/css/hero.css">
     <?php if ($page === 'admin'): ?>
     <link rel="stylesheet" href="/genuis_php/assets/css/admin.css">
     <?php endif; ?>
