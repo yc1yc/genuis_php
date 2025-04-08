@@ -6,7 +6,7 @@
 }
 
 :root {
-    --primary-color: #4a90e2;
+    --primary-color: #dc3545;
     --secondary-color: #f8f9fa;
     --text-color: #333;
     --light-text: #666;
@@ -48,8 +48,8 @@ main {
 
 /* Navigation */
 .main-nav {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #dc3545;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     position: fixed;
     top: 0;
     left: 0;
@@ -67,7 +67,7 @@ main {
 .logo a {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #333;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -80,14 +80,14 @@ main {
 }
 
 .nav-links a {
-    color: #333;
+    color: #ffffff;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: #007bff;
+    color: #f8f9fa;
 }
 
 .auth-links {
@@ -111,7 +111,7 @@ main {
     align-items: center;
     gap: 0.5rem;
     font-size: 1rem;
-    color: #333;
+    color: #ffffff;
 }
 
 .dropbtn i {
@@ -143,7 +143,7 @@ main {
 
 .dropdown-content a:hover {
     background-color: #f8f9fa;
-    color: #007bff;
+    color: #dc3545;
 }
 
 /* Auth Forms */
@@ -154,7 +154,7 @@ main {
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #dc3545 0%, #8b0000 100%);
     position: relative;
     overflow: hidden;
 }
@@ -191,7 +191,7 @@ main {
     left: 0;
     right: 0;
     height: 6px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, #dc3545 0%, #8b0000 100%);
     border-radius: 24px 24px 0 0;
 }
 
@@ -209,7 +209,7 @@ main {
 
 .auth-form h1 i {
     font-size: 2rem;
-    color: #667eea;
+    color: #dc3545;
 }
 
 .form-row {
@@ -236,7 +236,7 @@ main {
 }
 
 .form-group label i {
-    color: #667eea;
+    color: #dc3545;
     font-size: 1.1rem;
 }
 
@@ -253,8 +253,8 @@ main {
 
 .form-group input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    border-color: #dc3545;
+    box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.1);
     background: #fff;
 }
 
@@ -263,7 +263,7 @@ main {
 }
 
 .form-group input::placeholder {
-    color: #a0aec0;
+    color: #dc3545;
 }
 
 .form-group.error input {
@@ -308,8 +308,8 @@ main {
 }
 
 .remember-me input[type="checkbox"]:checked {
-    background: #667eea;
-    border-color: #667eea;
+    background: #dc3545;
+    border-color: #dc3545;
 }
 
 .remember-me input[type="checkbox"]:checked::after {
@@ -363,7 +363,7 @@ main {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #dc3545 0%, #8b0000 100%);
     color: #fff;
     position: relative;
     overflow: hidden;
@@ -426,7 +426,7 @@ main {
 }
 
 .auth-links a:hover {
-    color: #667eea;
+    color: #dc3545;
     transform: translateY(-1px);
 }
 
@@ -520,7 +520,7 @@ main {
 @media (max-width: 640px) {
     .auth-page {
         padding: 1rem;
-        background: linear-gradient(165deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(165deg, #dc3545 0%, #8b0000 100%);
     }
 
     .auth-form {
@@ -608,7 +608,7 @@ main {
 }
 
 .terms a {
-    color: #667eea;
+    color: #dc3545;
     text-decoration: none;
 }
 
@@ -722,7 +722,7 @@ main {
 }
 
 .reservation-details i {
-    color: #007bff;
+    color: #dc3545;
 }
 
 .reservation-actions {
@@ -788,7 +788,7 @@ main {
     line-height: 1;
     padding: 0.25rem;
     cursor: pointer;
-    color: #a0aec0;
+    color: #dc3545;
     transition: color 0.2s;
 }
 
@@ -1469,7 +1469,7 @@ textarea {
 }
 
 .dashboard-header h1 i {
-    color: #667eea;
+    color: #dc3545;
 }
 
 .header-actions {
@@ -1502,8 +1502,8 @@ textarea {
 
 .stat-card i {
     font-size: 2.5rem;
-    color: #667eea;
-    background: rgba(102, 126, 234, 0.1);
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
     width: 64px;
     height: 64px;
     display: flex;
@@ -1549,7 +1549,7 @@ textarea {
 }
 
 .dashboard-section h2 i {
-    color: #667eea;
+    color: #dc3545;
 }
 
 .table-responsive {
@@ -1624,8 +1624,8 @@ textarea {
 }
 
 .btn-outline:hover {
-    border-color: #667eea;
-    color: #667eea;
+    border-color: #dc3545;
+    color: #dc3545;
     transform: translateY(-1px);
 }
 
@@ -1749,8 +1749,8 @@ textarea {
 
 .role-select:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #dc3545;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
 }
 
 .action-buttons {
@@ -1775,7 +1775,7 @@ textarea {
 
 .btn-icon:hover {
     background: #f7fafc;
-    color: #667eea;
+    color: #dc3545;
 }
 
 .btn-icon.delete:hover {
@@ -1785,103 +1785,6 @@ textarea {
 
 .inline-form {
     display: inline;
-}
-
-.search-form {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.search-input {
-    position: relative;
-}
-
-.search-input i {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #a0aec0;
-}
-
-.search-input input {
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    width: 300px;
-    font-size: 0.875rem;
-    transition: all 0.2s ease;
-}
-
-.search-input input:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.pagination-info {
-    color: #718096;
-    font-size: 0.875rem;
-}
-
-@media (max-width: 1024px) {
-    .search-form {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .search-input input {
-        width: 100%;
-    }
-
-    .admin-table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-}
-
-/* Filtres et recherche */
-.filters-form {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.filter-select {
-    padding: 0.75rem 2rem 0.75rem 1rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    background: #fff;
-    color: #4a5568;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.5rem center;
-    background-size: 1.25rem;
-}
-
-.filter-select:hover {
-    border-color: #cbd5e0;
-}
-
-.filter-select:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 /* Informations véhicule */
@@ -1992,8 +1895,8 @@ textarea {
 
 .form-group input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #dc3545;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
 }
 
 .remember-group {
@@ -2019,7 +1922,7 @@ textarea {
 }
 
 .login-btn {
-    background: #667eea;
+    background: #dc3545;
     color: #fff;
     padding: 0.75rem;
     border: none;
@@ -2040,7 +1943,7 @@ textarea {
 }
 
 .login-footer a {
-    color: #667eea;
+    color: #dc3545;
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -2055,7 +1958,7 @@ textarea {
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: #a0aec0;
+    color: #dc3545;
 }
 
 .login-divider::before,
@@ -2173,7 +2076,7 @@ textarea {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #667eea;
+    color: #dc3545;
     background: #f7fafc;
 }
 
@@ -2202,13 +2105,13 @@ textarea {
 }
 
 .navbar-auth .btn-outline:hover {
-    border-color: #667eea;
-    color: #667eea;
+    border-color: #dc3545;
+    color: #dc3545;
     background: #f7fafc;
 }
 
 .navbar-auth .btn-primary {
-    background: #667eea;
+    background: #dc3545;
     color: #fff;
     border: none;
 }
@@ -2291,7 +2194,7 @@ textarea {
 
 .user-menu-item:hover {
     background: #f7fafc;
-    color: #667eea;
+    color: #dc3545;
 }
 
 .user-menu-item i {
@@ -2391,7 +2294,7 @@ textarea {
 
 .stat-card i {
     font-size: 2rem;
-    color: #667eea;
+    color: #dc3545;
 }
 
 .stat-content h3 {
@@ -2679,7 +2582,7 @@ textarea {
 }
 
 .btn-primary {
-    background: #667eea;
+    background: #dc3545;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -2719,7 +2622,7 @@ textarea {
 }
 
 .vehicles-header h1 i {
-    color: #667eea;
+    color: #dc3545;
 }
 
 .vehicles-filters {
@@ -2775,7 +2678,7 @@ textarea {
 
 .vehicle-image-placeholder i {
     font-size: 3rem;
-    color: #a0aec0;
+    color: #dc3545;
 }
 
 .vehicle-details {
@@ -2895,7 +2798,7 @@ textarea {
 }
 
 .reservations-header h1 i {
-    color: #667eea;
+    color: #dc3545;
 }
 
 .reservations-grid {
@@ -3029,7 +2932,7 @@ textarea {
 }
 
 .register-header h1 i {
-    color: #667eea;
+    color: #dc3545;
 }
 
 .register-section {
@@ -3050,7 +2953,7 @@ textarea {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, #dc3545 0%, #8b0000 100%);
 }
 
 .register-form .form-row {
@@ -3076,13 +2979,13 @@ textarea {
 
 .register-form .form-control:focus {
     background: #ffffff;
-    border-color: #667eea;
+    border-color: #dc3545;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
     outline: none;
 }
 
 .register-form .form-control:hover {
-    border-color: #667eea;
+    border-color: #dc3545;
     background: #ffffff;
 }
 
@@ -3095,7 +2998,7 @@ textarea {
 }
 
 .register-form .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #dc3545 0%, #8b0000 100%);
     padding: 0.875rem 2rem;
     font-size: 0.95rem;
     font-weight: 600;
@@ -3115,7 +3018,7 @@ textarea {
 .register-form .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(102, 126, 234, 0.25);
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    background: linear-gradient(135deg, #8b0000 0%, #dc3545 100%);
 }
 
 .register-footer {
@@ -3131,7 +3034,7 @@ textarea {
 }
 
 .register-footer a {
-    color: #667eea;
+    color: #dc3545;
     font-weight: 600;
     text-decoration: none;
     padding: 0.25rem 0.5rem;
@@ -3140,19 +3043,19 @@ textarea {
 }
 
 .register-footer a:hover {
-    background: rgba(102, 126, 234, 0.1);
-    color: #764ba2;
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
 }
 
 .register-footer a {
-    color: #667eea;
+    color: #dc3545;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.2s ease;
 }
 
 .register-footer a:hover {
-    color: #764ba2;
+    color: #dc3545;
     text-decoration: underline;
 }
 
@@ -3194,7 +3097,7 @@ textarea {
 }
 
 .register-footer a {
-    color: #667eea;
+    color: #dc3545;
     text-decoration: none;
     font-weight: 500;
 }
@@ -3263,7 +3166,7 @@ textarea {
 
 .profile-cover {
     height: 200px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #dc3545 0%, #8b0000 100%);
 }
 
 .profile-avatar-wrapper {
@@ -3330,7 +3233,7 @@ textarea {
 }
 
 .card-header i {
-    color: #4A90E2;
+    color: #dc3545;
 }
 
 .profile-info-grid {
@@ -3359,8 +3262,8 @@ textarea {
 
 .btn-outline {
     padding: 0.5rem 1rem;
-    border: 1px solid #4A90E2;
-    color: #4A90E2;
+    border: 1px solid #dc3545;
+    color: #dc3545;
     border-radius: 0.5rem;
     font-size: 0.875rem;
     display: inline-flex;
@@ -3372,7 +3275,7 @@ textarea {
 }
 
 .btn-outline:hover {
-    background: #4A90E2;
+    background: #dc3545;
     color: white;
 }
 
@@ -3442,7 +3345,7 @@ textarea {
 }
 
 .vehicles-header h1 i {
-    color: #007bff;
+    color: #dc3545;
     margin-right: 0.5rem;
 }
 
@@ -3496,7 +3399,7 @@ textarea {
 
 .vehicle-image-placeholder i {
     font-size: 4rem;
-    color: #adb5bd;
+    color: #dc3545;
 }
 
 .vehicle-details {
@@ -3554,7 +3457,7 @@ textarea {
 
 .info-row .label i {
     margin-right: 0.5rem;
-    color: #007bff;
+    color: #dc3545;
 }
 
 .info-row .value {
@@ -3578,24 +3481,24 @@ textarea {
 }
 
 .btn-outline-primary {
-    color: #007bff;
+    color: #dc3545;
     background: transparent;
-    border: 1px solid #007bff;
+    border: 1px solid #dc3545;
 }
 
 .btn-outline-primary:hover {
-    background: #007bff;
+    background: #dc3545;
     color: white;
 }
 
 .btn-primary {
-    background: #007bff;
+    background: #dc3545;
     color: white;
     border: none;
 }
 
 .btn-primary:hover {
-    background: #0056b3;
+    background: #b02a37;
 }
 
 /* Responsive design */
@@ -3630,8 +3533,8 @@ textarea {
 
 .form-control:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+    border-color: #dc3545;
+    box-shadow: 0 0 0 2px rgba(220,53,69,0.25);
 }
 
 /* Prix et disponibilité */
@@ -3669,3 +3572,112 @@ textarea {
     width: 1rem;
     margin-right: 0.5rem;
 }
+
+/* Footer Styles */
+.main-footer {
+    background-color: #8b0000;
+    color: #ffffff;
+    padding: 3rem 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    color: #f8f9fa;
+    line-height: 1.6;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    color: #ffffff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: #f8f9fa;
+}
+
+.contact-list, .footer-links, .hours-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-list li, .hours-list li {
+    color: #f8f9fa;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: #f8f9fa;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.hours-list li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-bottom {
+    background-color: #660000;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+.footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-bottom p {
+    color: #f8f9fa;
+    margin: 0;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-bottom-links a {
+    color: #f8f9fa;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+    color: #ffffff;
+}
+
+/* Fin du fichier */

@@ -73,11 +73,11 @@
 
 .admin-nav-item:hover {
     background: #f7fafc;
-    color: #4A90E2;
+    color: #dc3545;
 }
 
 .admin-nav-item.active {
-    background: #4A90E2;
+    background: #dc3545;
     color: white;
 }
 
@@ -141,7 +141,7 @@
 
 .admin-card i {
     font-size: 2.5rem;
-    color: #4A90E2;
+    color: #dc3545;
     margin-bottom: 1rem;
 }
 
@@ -227,7 +227,7 @@
 }
 
 .vehicle-price {
-    color: #4A90E2;
+    color: #dc3545;
     font-weight: 600;
 }
 
@@ -284,7 +284,7 @@
 }
 
 .vehicle-stats i {
-    color: #4A90E2;
+    color: #dc3545;
     margin-right: 0.25rem;
 }
 
@@ -381,13 +381,13 @@
 
 .form-control:focus {
     outline: none;
-    border-color: #4A90E2;
+    border-color: #dc3545;
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
 .form-control:focus {
     outline: none;
-    border-color: #4A90E2;
+    border-color: #dc3545;
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
@@ -412,7 +412,7 @@
 
 .form-control:focus {
     outline: none;
-    border-color: #4A90E2;
+    border-color: #dc3545;
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
@@ -460,8 +460,8 @@
 }
 
 .btn-outline:hover {
-    border-color: #4A90E2;
-    color: #4A90E2;
+    border-color: #dc3545;
+    color: #dc3545;
     background: #F7FAFC;
 }
 
@@ -546,7 +546,7 @@
 
 .stat-card i {
     font-size: 2rem;
-    color: #4A90E2;
+    color: #dc3545;
     background: #EBF4FF;
     width: 60px;
     height: 60px;
@@ -596,7 +596,7 @@
 }
 
 .dashboard-section h2 i {
-    color: #4A90E2;
+    color: #dc3545;
 }
 
 .empty-state {
@@ -693,7 +693,7 @@
 }
 
 .btn-info {
-    background: #4A90E2;
+    background: #dc3545;
     color: white;
 }
 
@@ -769,7 +769,7 @@
 }
 
 .category-stats i {
-    color: #4A90E2;
+    color: #dc3545;
 }
 
 .category-actions {
